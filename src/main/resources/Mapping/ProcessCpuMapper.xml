@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.ProcessCpuDao">
+
+
+    <select id="findRecent2" resultType="com.kuang.entity.ProcessCpu">
+        select * from nameprocess_group_cpu_user_second_151 order by time desc limit 2
+    </select>
+    <select id="findRecent2_139" resultType="com.kuang.entity.ProcessCpu">
+        select * from nameprocess_group_cpu_user_second_139 order by time desc limit 2
+    </select>
+    <select id="findRecent2_149" resultType="com.kuang.entity.ProcessCpu">
+        select * from nameprocess_group_cpu_user_second_149 order by time desc limit 2
+    </select>
+    <select id="findRecent2_150" resultType="com.kuang.entity.ProcessCpu">
+        select * from nameprocess_group_cpu_user_second_150 order by time desc limit 2
+    </select>
+    <select id="findRecent2_152" resultType="com.kuang.entity.ProcessCpu">
+        select * from nameprocess_group_cpu_user_second_152 order by time desc limit 2
+    </select>
+
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.AccountDao">
+    <insert id="save" parameterType="com.kuang.entity.Account">
+        insert into account values(#{id},#{name},#{money})
+    </insert>
+    <select id="findAll" resultType="com.kuang.entity.Account">
+        select * from account
+    </select>
+    <delete id="Delete" parameterType="java.lang.String">
+        delete from account where id=#{id}
+    </delete>
+</mapper>

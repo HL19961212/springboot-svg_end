@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial=scale=1">
+
+    <title>List</title>
+    <link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/layer.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/layout.css}" type="text/css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<table class="table table-hover table-bordered" id="mytable">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>指标</th>
+        <th>瓶颈</th>
+        <th>瓶颈级别</th>
+        <th>基线标准</th>
+        <th>说明</th>
+        <th>维护操作</th>
+
+    </tr>
+
+    <!--
+            <tr>
+            <td><input type="checkbox" onclick="checkAll(this)"/></td>
+            <td colspan="7"><a href="javascript:;" class="btn btn-danger" role="button" onclick="delAll(this)">全部删除</a></td>
+            </tr>
+    -->
+    </thead>
+    <tbody id="listTable">
+    <tr th:each="monitoring,iterStat : ${jiankongList}" th:class="${iterStat.odd}? 'odd'">
+
+        <td th:text="${monitoring.id}"></td>
+        <td th:text="${monitoring.zhibiao}"></td>
+        <td th:text="${monitoring.pj}"></td>
+        <td th:text="${monitoring.pjjibie}"></td>
+        <td th:text="${monitoring.biaozhun}"></td>
+        <td th:text="${monitoring.explain}"></td>
+
+        <td>
+            <a th:href="'/mondelete/'+${monitoring.id}"><input type="button" name="" value="删除" class="btn btn-success"/></a>
+            <input type="button" name="" value="修改" class="btn btn-info" onclick="modify(this)" />
+        </td>
+    </tr>
+
+    </tbody>
+    <tr>
+
+        <td colspan="13"><a href="javascript:;" class="btn btn-danger" role="button" onclick="delAll(this)">全部删除</a>
+            <a href="table2-2.html"><input type="button" name="" value="新增" class="btn btn-success" onclick="addList()" /></a>
+        </td>
+
+    </tr>
+
+</table>
+
+
+<script type="text/javascript">
+
+    //add功能
+    //获取表单每个input的value值，然后创建节点td，添加到上面的表格当中
+
+    //delAll功能
+    //通过checkbox的checked属性当做开关，然后通过遍历删除checked=true对应的tr行。
+    function delAll(){
+        var olistTable = document.getElementById('listTable');
+        var items = document.getElementsByName("item");
+        for(var j=0;j<items.length;j++){
+            if(items[j].checked)//如果item被选中
+            {
+                var oParentnode = items[j].parentNode.parentNode;
+                olistTable.removeChild(oParentnode);
+                j--;
+            }
+        }
+    }
+
+</script>
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script>
+    var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+    //loading层
+    var index = layer.load(1, {
+        shade: [0.4,'#000'], //0.1透明度的白色背景
+        time: 1500
+    });
+</script>
+</body>
+</html>

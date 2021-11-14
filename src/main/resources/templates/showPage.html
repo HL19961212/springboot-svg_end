@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>sex</th>
+            <th>age</th>
+        </tr>
+        <tr th:each="cpu:${pageInfo.list}">
+            <td th:text="${cpu.id}"></td>
+            <td th:text="${cpu.time}"></td>
+            <td th:text="${cpu.name}"></td>
+            <td th:text="${cpu.cpu}"></td>
+            <td th:text="${cpu.instance}"></td>
+            <td th:text="${cpu.job}"></td>
+            <td th:text="${cpu.mode}"></td>
+            <td th:text="${cpu.value}"></td>
+            <td th:text="${cpu.chazhi}"></td>
+        </tr>
+    </table>
+    <p>当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span th:text="${pageInfo.pages}"></span> 页,共 <span th:text="${pageInfo.total}"></span> 条记录</p>
+    <a th:href="@{/getAllPage}">首页</a>
+    <a th:href="@{/getAllPage(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+    <a th:href="@{/getAllPage(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+    <a th:href="@{/getAllPage(pageNum=${pageInfo.pages})}">尾页</a>
+</div>
+</body>
+</html>

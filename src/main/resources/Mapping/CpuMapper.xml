@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.CpuDao">
+
+    <select id="findAll" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_user_151 where cpu=0
+    </select>
+    <select id="findAll_1" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_user_151 where cpu=1
+    </select>
+    <select id="getList" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_user_151
+    </select>
+    <select id="findRecent32" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_user_151 order by time desc limit 32
+    </select>
+    <select id="findRecentIdle32" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_idle_151 order by time desc limit 32
+    </select>
+    <select id="findRecentIO32" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_iowait_151 order by time desc limit 32
+    </select>
+    <select id="findRecentSys32" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_system_151 order by time desc limit 32
+    </select>
+
+
+    <select id="findRecentIdle16_139" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_idle_139 order by time desc limit 16
+    </select>
+    <select id="findRecentIO16_139" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_iowait_139 order by time desc limit 16
+    </select>
+    <select id="findRecentSys16_139" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_system_139 order by time desc limit 16
+    </select>
+
+
+    <select id="findRecentIdle16_149" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_idle_149 order by time desc limit 16
+    </select>
+    <select id="findRecentIO16_149" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_iowait_149 order by time desc limit 16
+    </select>
+    <select id="findRecentSys16_149" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_system_149 order by time desc limit 16
+    </select>
+
+
+    <select id="findRecentIdle16_150" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_idle_150 order by time desc limit 16
+    </select>
+    <select id="findRecentIO16_150" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_iowait_150 order by time desc limit 16
+    </select>
+    <select id="findRecentSys16_150" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_system_150 order by time desc limit 16
+    </select>
+
+
+    <select id="findRecentIdle8_152" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_idle_152 order by time desc limit 8
+    </select>
+    <select id="findRecentIO8_152" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_iowait_152 order by time desc limit 8
+    </select>
+    <select id="findRecentSys8_152" resultType="com.kuang.entity.Cpu">
+        select * from node_cpu_second_system_152 order by time desc limit 8
+    </select>
+
+
+</mapper>

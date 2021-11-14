@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.DiskIODao">
+
+
+    <select id="getRecent2" resultType="com.kuang.entity.DiskIO">
+        select * from node_disk_io_time_seconds_151 order by time desc limit 2
+    </select>
+    <select id="getReceive" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_receive_drop_151 order by time desc limit 1
+    </select>
+    <select id="getTransmit" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_transmit_drop_151 order by time desc limit 1
+    </select>
+
+    <select id="getRecent2_139" resultType="com.kuang.entity.DiskIO">
+        select * from node_disk_io_time_seconds_139 order by time desc limit 2
+    </select>
+    <select id="getReceive_139" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_receive_drop_139 order by time desc limit 1
+    </select>
+    <select id="getTransmit_139" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_transmit_drop_139 order by time desc limit 1
+    </select>
+
+    <select id="getRecent2_149" resultType="com.kuang.entity.DiskIO">
+        select * from node_disk_io_time_seconds_149 order by time desc limit 2
+    </select>
+    <select id="getReceive_149" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_receive_drop_149 order by time desc limit 1
+    </select>
+    <select id="getTransmit_149" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_transmit_drop_149 order by time desc limit 1
+    </select>
+
+    <select id="getRecent2_150" resultType="com.kuang.entity.DiskIO">
+        select * from node_disk_io_time_seconds_150 order by time desc limit 2
+    </select>
+    <select id="getReceive_150" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_receive_drop_150 order by time desc limit 1
+    </select>
+    <select id="getTransmit_150" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_transmit_drop_150 order by time desc limit 1
+    </select>
+
+    <select id="getRecent2_152" resultType="com.kuang.entity.DiskIO">
+        select * from node_disk_io_time_seconds_152 order by time desc limit 2
+    </select>
+    <select id="getReceive_152" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_receive_drop_152 order by time desc limit 1
+    </select>
+    <select id="getTransmit_152" resultType="com.kuang.entity.DiskIO">
+        select * from node_network_transmit_drop_152 order by time desc limit 1
+    </select>
+
+
+</mapper>

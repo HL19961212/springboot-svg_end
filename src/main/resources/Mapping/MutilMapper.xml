@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.MutilDao">
+    <insert id="save" parameterType="com.kuang.entity.Mutil">
+        insert into xingneng_zhibiao_151 values(#{time},#{cpu},#{process_cpu},#{cpu_io},#{sys_cpu},#{node_mem},#{process_mem},#{SWAP},#{diskio},#{filesys},#{receive},#{transmit})
+    </insert>
+    <insert id="save_139" parameterType="com.kuang.entity.Mutil">
+        insert into xingneng_zhibiao_139 values(#{time},#{cpu},#{process_cpu},#{cpu_io},#{sys_cpu},#{node_mem},#{process_mem},#{SWAP},#{diskio},#{filesys},#{receive},#{transmit})
+    </insert>
+    <insert id="save_149" parameterType="com.kuang.entity.Mutil">
+        insert into xingneng_zhibiao_149 values(#{time},#{cpu},#{process_cpu},#{cpu_io},#{sys_cpu},#{node_mem},#{process_mem},#{SWAP},#{diskio},#{filesys},#{receive},#{transmit})
+    </insert>
+    <insert id="save_150" parameterType="com.kuang.entity.Mutil">
+        insert into xingneng_zhibiao_150 values(#{time},#{cpu},#{process_cpu},#{cpu_io},#{sys_cpu},#{node_mem},#{process_mem},#{SWAP},#{diskio},#{filesys},#{receive},#{transmit})
+    </insert>
+    <insert id="save_152" parameterType="com.kuang.entity.Mutil">
+        insert into xingneng_zhibiao_152 values(#{time},#{cpu},#{process_cpu},#{cpu_io},#{sys_cpu},#{node_mem},#{process_mem},#{SWAP},#{diskio},#{filesys},#{receive},#{transmit})
+    </insert>
+    <insert id="save2" parameterType="com.kuang.entity.Mutil">
+        insert into xingneng_zhibiao_copy1 values(#{time},#{cpu},#{process_cpu},#{cpu_io},#{sys_cpu},#{node_mem},#{process_mem},#{SWAP},#{diskio},#{filesys},#{receive},#{transmit})
+    </insert>
+    <select id="findRecent" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_151 order by time desc limit 1
+    </select>
+    <select id="findRecent100" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_151 order by time desc
+    </select>
+    <delete id="Delete" parameterType="java.lang.String">
+        delete from xingneng_zhibiao_151 where time=#{time}
+    </delete>
+
+    <select id="findRecent_139" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_139 order by time desc limit 1
+    </select>
+    <select id="findRecent100_139" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_139 order by time desc
+    </select>
+    <delete id="Delete_139" parameterType="java.lang.String">
+        delete from xingneng_zhibiao_139 where time=#{time}
+    </delete>
+
+    <select id="findRecent_149" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_149 order by time desc limit 1
+    </select>
+    <select id="findRecent100_149" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_149 order by time desc
+    </select>
+    <delete id="Delete_149" parameterType="java.lang.String">
+        delete from xingneng_zhibiao_149 where time=#{time}
+    </delete>
+
+    <select id="findRecent_150" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_150 order by time desc limit 1
+    </select>
+    <select id="findRecent100_150" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_150 order by time desc
+    </select>
+    <delete id="Delete_150" parameterType="java.lang.String">
+        delete from xingneng_zhibiao_150 where time=#{time}
+    </delete>
+
+    <select id="findRecent_152" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_152 order by time desc limit 1
+    </select>
+    <select id="findRecent100_152" resultType="com.kuang.entity.Mutil">
+        select * from xingneng_zhibiao_152 order by time desc
+    </select>
+    <delete id="Delete_152" parameterType="java.lang.String">
+        delete from xingneng_zhibiao_152 where time=#{time}
+    </delete>
+
+    <select id="findRecent_opt" resultType="com.kuang.entity.Mutil">
+        select process_cpu,process_mem,diskio from xingneng_zhibiao_151 order by time desc limit 1
+    </select>
+
+
+</mapper>

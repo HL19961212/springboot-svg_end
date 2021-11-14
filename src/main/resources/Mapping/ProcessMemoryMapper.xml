@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.ProcessMemoryDao">
+
+
+    <select id="findRecent" resultType="com.kuang.entity.ProcessMemory">
+        select * from namedprocess_namegroup_memory_bytes_151 order by time desc limit 1
+    </select>
+    <select id="findRecent_139" resultType="com.kuang.entity.ProcessMemory">
+        select * from namedprocess_namegroup_memory_bytes_139 order by time desc limit 1
+    </select>
+    <select id="findRecent_149" resultType="com.kuang.entity.ProcessMemory">
+        select * from namedprocess_namegroup_memory_bytes_149 order by time desc limit 1
+    </select>
+    <select id="findRecent_150" resultType="com.kuang.entity.ProcessMemory">
+        select * from namedprocess_namegroup_memory_bytes_150 order by time desc limit 1
+    </select>
+    <select id="findRecent_152" resultType="com.kuang.entity.ProcessMemory">
+        select * from namedprocess_namegroup_memory_bytes_152 order by time desc limit 1
+    </select>
+
+
+</mapper>

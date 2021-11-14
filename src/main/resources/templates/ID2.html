@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>数值预报系统运行性能监测</title>
+		<link rel="stylesheet" th:href="@{/css/layui/css/layui.css}" href="../static/css/layui/css/layui.css">
+		<script>
+			function getCookie(name)
+			{
+				var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+				if(arr=document.cookie.match(reg))
+					return unescape(arr[2]);
+				else
+					return null;
+			}
+			var username=getCookie("username");
+			var password=getCookie("password");
+			var token=getCookie("token");
+			document.write(username+" "+password+" "+token);
+			document.write('<a href=table2-pj?token='+token+'>ddd</a>');
+			document.getElementById('testtoken').value = token;
+
+			function Go() {
+				window.location.href='cluster?token='+token;
+			}
+			var src=""
+		</script>
+	</head>
+
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo" style="width: 500px;font-size: 18pt;letter-spacing:6px;">数值预报系统运行性能监测</div>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item">
+						<a href="javascript:;">
+							<img src="https://gitee.com/uploads/66/890966_Leytton.png?1512991922" class="layui-nav-img"><script>
+
+							var username=getCookie("username");
+							document.write(username);
+
+						</script></a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="javascript:;" onclick="addTab(this);" tab_url="http://www.llqqww.com">用户管理</a>
+							</dd>
+							<dd>
+								<a href="login">退出</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="javascript:;">选择</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="/id_1">架构及性能监测</a>
+							</dd>
+							<dd>
+								<a href="/id_3">性能瓶颈评测</a>
+							</dd>
+							<dd>
+								<a href="/id_4">运行优化方案</a>
+							</dd>
+							<dd>
+								<a href="/id_5">数据管理</a>
+							</dd>
+							
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="/index11">首页</a>
+					</li>
+				</ul>
+			</div>
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+					<ul class="layui-nav layui-nav-tree">
+						<li class="layui-nav-item layui-nav-itemed">
+							<dd class="layui-this"><a href="javascript:layui.element.tabChange('demoTab', 'base_info');">动态Petri网监测</a></dd>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:void(0);" class="layTabPlus" tab_url="http://172.18.129.210:3001/d/G9Emdrg7z/ying-jian-xing-neng-jian-ce-zhi-biao-shu-ju-ke-shi-hua-zhan-shi?orgId=1&kiosk">硬件性能监测</a>
+						</li>	
+					</ul>
+				</div>
+			</div>
+
+			<div class="layui-body">
+				<!-- 内容主体区域 -->
+				<div class="layui-tab" lay-filter="demoTab" lay-allowClose="true">
+					<ul class="layui-tab-title">
+						<li class="layui-this noclose" lay-id='base_info'>动态Petri网监测可视化</li>
+					</ul>
+					<div class="layui-tab-content" style="padding:0px;">
+						<div class="layui-tab-item layui-show">
+							<iframe src="http://localhost:8080/fvcom2"  width="1300px" height="940px" frameborder="0" ></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script th:src="@{/css/layui/layui.all.js}" src="../static/css/layui/layui.all.js"></script>
+		<script>
+			var $ = layui.jquery;
+			var layer = layui.layer;
+			var element = layui.element;
+			var util = layui.util;
+			var table = layui.table;
+		</script>
+		<script th:src="@{/js/layTabPlus.js}" src="../static/js/layTabPlus.js"></script>
+		<script>
+			layTabPlus.init({
+				lay_filter: 'demoTab'
+			});
+		</script>
+	</body>
+
+</html>
+<style>
+	.sysNotice .layui-table {
+		margin-top: 0;
+		border-left: 5px solid #e2e2e2;
+	}
+	
+	.layui-elem-quote.title {
+		padding: 10px 15px;
+		margin-bottom: 0;
+	}
+	
+	.sysNotice {
+		width: 75%;
+	}
+	.code{
+		color: #c7254e;
+		background-color: #f9f2f4;
+		border-radius: 2px;
+		padding: 4px 2px 0;
+	}
+</style>

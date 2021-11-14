@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>主页面</title>
+    <style>
+        #total
+    </style>
+
+</head>
+<!--    <frameset id="total" rows="14%,*">-->
+    <frameset id="total"rows="20%,80%">
+        <!--头部展示-->
+        <frame th:src="@{head}">
+        <!--中间展示-->
+        <frame th:src="@{main_test}" name="windows">
+    </frameset>
+
+<body>
+
+</body>
+</html>

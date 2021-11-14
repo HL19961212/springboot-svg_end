@@ -1,0 +1,27 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-size: 15px !important;
+}
+body{
+	-background-color:#C3C0CF !important;
+	background-size: contain;
+}
+table{
+	width: 90% !important;
+	margin: 100px auto !important;
+}
+table th,td{
+	text-align: center;
+	height: 40px;
+	line-height: 40px !important;
+}
+h1{
+	font-size: 20px !important;
+}
+form{
+	margin-top:-130px;
+}
+footer{
+	text-align: center;
+}

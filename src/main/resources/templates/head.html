@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>头部展示</title>
+    <style type="text/css">
+
+        #toubu{border: 2px solid #74A8F5;height: 110px;margi: 0px;background:#5494F3;}
+        /*#toubu #toubuleft{width:800px;height:110px;margin-top:5px;float:left;}*/
+        /*#toubu #touburight{width:calc(100% - 800px);height:110px;float:right;}*/
+        #toubu #toubuleft{width:30%;height:80px;float:left;}
+        #toubu #touburight{width:70%;height:110px;float:right;}
+
+    </style>
+
+</head>
+<body>
+    <div id="toubu" class="toudoo">
+        <div id="toubuleft">
+            <img th:src="@{/css/images/sea.gif}">
+        </div>
+        <div id="touburight" class="touburight">
+            <h1 id="title" >
+                <font color="white" size="4" style="margin-left: 50px">海洋云计算petri网---动态实时监控fvcom</font>
+                <br/>
+                <font color="white" size="2" style="align-content: center">Ocean cloud computing petri net-dynamic real-time monitoring fvcom</font>
+                <br/>
+            </h1>
+        </div>
+    </div>
+</body>
+</html>

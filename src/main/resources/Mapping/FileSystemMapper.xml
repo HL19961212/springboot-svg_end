@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.FileSystemDao">
+
+
+    <select id="getRecent" resultType="com.kuang.entity.FileSystem">
+        select * from node_filesystem_avail_bytes_rates_151 order by time desc limit 1
+    </select>
+    <select id="getRecent_139" resultType="com.kuang.entity.FileSystem">
+        select * from node_filesystem_avail_bytes_rates_139 order by time desc limit 1
+    </select>
+    <select id="getRecent_149" resultType="com.kuang.entity.FileSystem">
+        select * from node_filesystem_avail_bytes_rates_149 order by time desc limit 1
+    </select>
+    <select id="getRecent_150" resultType="com.kuang.entity.FileSystem">
+        select * from node_filesystem_avail_bytes_rates_150 order by time desc limit 1
+    </select>
+    <select id="getRecent_152" resultType="com.kuang.entity.FileSystem">
+        select * from node_filesystem_avail_bytes_rates_152 order by time desc limit 1
+    </select>
+
+
+
+</mapper>

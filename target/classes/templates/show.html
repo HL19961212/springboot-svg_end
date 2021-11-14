@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>展示账户数据列表</h1>
+<table border="1">
+
+<tr>
+    <th>账户id</th>
+    <th>账户名称</th>
+    <th>账户金额</th>
+</tr>
+
+<tr th:each="account,iterStat : ${accountList}" th:class="${iterStat.odd}? 'odd'">
+
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.name}"></td>
+        <td th:text="${account.money}"></td>
+
+    </tr>
+
+</table>
+</body>
+</html>

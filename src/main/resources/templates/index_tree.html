@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<title>leg-tree</title>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+
+	</head>
+	<style>
+		.tree {
+			border: 1px solid black;
+			width: 600px;
+			height: 100vh;
+			display: block;
+			margin: auto;
+			overflow-y: scroll;
+			overflow-x: scroll;
+			position: relative;
+			padding-left: 20px;
+		}
+		
+		a {
+			text-decoration: none;
+			color: #434b5a;
+		}
+		
+		.synTree .iconxiangyou{
+			cursor: pointer;
+		}
+		.synTree span{
+			position: relative;
+		    top: -6px;
+		    left: 10px;
+		    color: #010102;
+	        cursor: default;
+		}
+		.leg_tree li {
+			list-style-type: none;
+			margin-left: -10px;
+			position: relative;
+			line-height: 22px;
+		}
+		
+		.leg_tree li a{
+			position: absolute;
+			top: -4px;
+			padding: 0px 10px;
+		}
+		.iconxiangyou{
+		    position: absolute;
+		    top: -5px;
+		    left: -10px;
+		}
+		.leg_tree li i{
+			font-size: 14px;
+		}
+		.leg_tree li i~i:before{
+			position: relative;
+		    top: -3px;
+		    left: 5px;
+		}
+		.tree input{cursor: pointer;}
+		.tree span {
+			font-size: 13px;
+			cursor: pointer;
+			display: inline-block;
+			border: 1px solid #e2e2e2;
+			width: 10px;
+			line-height: 8px;
+			text-align: center;
+			height: 10px;
+			background-color: whitesmoke;
+			position: absolute;
+			left: 8px;
+			top: 4px;
+		}
+		.tree ul span{
+			left: -16px;
+		}
+		.tree ul {
+			list-style-type: none;
+			margin-top: 0px;
+			position: relative;
+		}
+		
+		.label{
+			width: 14px;
+			height: 14px;
+			display: inline-flex;
+			border: 1px solid #a5a5a5;
+			border-radius: 3px;
+		}
+		.label i {
+		    color: #0095ff;
+		    position: absolute;
+		    top: -2px;
+		    left: -1px;
+		    font-size: 18px!important;
+		}
+		.label:hover {
+			box-shadow: 0 0 4px 0px #a0aefb;
+		}
+		/*.label i:hover {
+			box-shadow: 0 0 4px 0px #a0aefb;
+		}*/
+		.isShow{
+			position: absolute;
+			top: -3px;
+			left: -20px;
+		}
+		input{
+			display: none;
+		}
+		.isShow{
+			width: 14px;
+			margin-right: 5px;
+		}
+		
+		.tree1{
+			position: fixed;
+			top: 20px;
+		}
+		@font-face {font-family: "iconfont";
+
+  src: url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2');
+
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconzhong:before {
+  content: "\e692";
+}
+
+.iconhongxinline:before {
+  content: "\e72e";
+}
+
+.iconsuo:before {
+  content: "\e625";
+}
+
+.iconiconcheckbox:before {
+  content: "\e603";
+}
+
+.iconxiangyou:before {
+  content: "\e683";
+}
+
+.iconyonghu:before {
+  content: "\e668";
+}
+
+.iconcheckbox-weixuan:before {
+  content: "\e8b5";
+}
+
+.iconiconfontgongchandangeps:before {
+  content: "\e600";
+}
+
+.iconzhong1:before {
+  content: "\e69b";
+}
+
+.icongerenzhongxinhui:before {
+  content: "\e615";
+}
+
+.icongerenzhongxinlv:before {
+  content: "\e616";
+}
+
+.iconjingxuan:before {
+  content: "\e613";
+}
+
+.iconsousuo:before {
+  content: "\e633";
+}
+
+.iconjianhao:before {
+  content: "\e723";
+}
+
+.icongongchandang:before {
+  content: "\e684";
+}
+
+.icongerenzhongxinwoderenwubiaozhuntouxianxing:before {
+  content: "\e61d";
+}
+
+.iconjian:before {
+  content: "\e66e";
+}
+
+.iconjia:before {
+  content: "\e66f";
+}
+
+.iconjian1:before {
+  content: "\e6d4";
+}
+
+.iconjianhao1:before {
+  content: "\e656";
+}
+
+.iconjiahao:before {
+  content: "\e657";
+}
+
+.iconliebiao:before {
+  content: "\e659";
+}
+
+.iconshouye:before {
+  content: "\e65a";
+}
+
+.iconshezhi:before {
+  content: "\e65b";
+}
+
+.icontishi:before {
+  content: "\e65c";
+}
+
+.iconxinxi:before {
+  content: "\e65e";
+}
+
+.iconcaidan:before {
+  content: "\e669";
+}
+
+.iconicon-checkbox:before {
+  content: "\e606";
+}
+
+.iconxiangxia:before {
+  content: "\e6cb";
+}
+
+
+	</style>
+	<body>
+		<!-- <h1>最外面的class tree 需要不一样</h1> -->
+		<div class="tree">
+		</div>
+		 <div class="tree1"> 
+		</div>
+		<button id="demo">获取选中数据</button>
+	</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	      ;(function (global) {
+        class MyLeg {
+            constructor(options) {
+                this.options = options;
+            }
+
+            init() {
+                this.tree(this.options);
+            }
+
+            uuid() {
+                let s = [];
+                let hexDigits = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                for (let i = 0; i < 8; i++) {
+                    s[i] = hexDigits.substr(Math.floor(Math.random() * 0x30), 1);
+                }
+                let uuid = s.join("");
+                return uuid;
+            }
+
+            getCheckedNodes() { //获取选中id集合
+                let arr = []
+                $.each($('input:checkbox:checked'), function () {
+                    let temp = $(this).val();
+                    if (temp != "" && temp != "undefined") {
+                        arr.push($(this).val())
+                    }
+                });
+                return arr;
+            }
+
+            getHalfSelected() {//半选中id集合
+                let arr = []
+                $.each($('.iconjianhao'), function () {
+                    let temp = $(this).parent().prev().val();
+                    if (temp != "" && temp != "undefined") {
+                        arr.push(temp)
+                    }
+                });
+                return arr;
+            }
+
+            getAll() {
+                let arr1 = this.getCheckedNodes();
+                let arr2 = this.getHalfSelected();
+                return arr1.concat(arr2);
+            }
+
+            //创建树，无选中
+            creaTree(data) {
+                if (Array.isArray(data)) {
+                    let uuid = this.uuid();
+                    let str = '<ul class="leg_tree synTree">';
+                    for (let i = 0; i < data.length; i++) {
+                        str += '<li id="' + data[i].id + '">'
+                        if (data[i].isParent) {
+                            str += '<i class="iconfont iconxiangyou" data-isParent="true"/>';
+                        }
+                        if (data[i].ico != undefined && data[i].ico != "") {
+                            str += '<i class="' + data[i].ico + '"/>';
+                        }
+                        str += '<span>' + data[i].name + '</span>';
+                        str += '</li>';
+                    }
+                    ;
+                    str += '</ul>';
+                    return str;
+                } else {
+                    console.error("数据格式不正确!!")
+                }
+            }
+
+            addTree(data) {
+
+            }
+
+            synTree(options) {
+                let that = this;
+                let id = options.id;
+                if (id == undefined) {
+                    id = 0;
+                }
+
+                $.get(options.url, {id: id}, res => {
+                    try {
+                        res = options.dataStyle(res)
+                    } catch (e) {
+                        //TODO handle the exception
+                    }
+                    $(options.ele).append(this.creaTree(res));
+                })
+
+                $(options.ele).on('click', "ul li .iconxiangyou", function (e) {//点击向下图标
+                    if ($(this).attr("data-isParent") == "true") {
+                        $.get(options.url, {id: $(this).parent().attr("id")}, res => {
+                            try {
+                                res = options.dataStyle(res)
+                            } catch (e) {
+                                //TODO handle the exception
+                            }
+                            $(this).parent().append(that.creaTree(res));
+                        })
+                        $(this).attr("data-isParent", '0')
+                        $(this).attr("style", 'transform:rotate(90deg)');
+                    } else if ($(this).attr("data-isParent") == 0) {
+                        $(this).parent().children('ul').attr("style", 'display: none;');
+                        $(this).attr("data-isParent", '1')
+                        $(this).attr("style", 'transform:rotate(0deg)');
+                    } else if ($(this).attr("data-isParent") == 1) {
+                        $(this).parent().children('ul').attr("style", 'display: block;');
+                        $(this).attr("data-isParent", '0')
+                        $(this).attr("style", 'transform:rotate(90deg)');
+                    }
+                    e.stopPropagation();
+                })
+                $(options.ele).on('click', "ul li span", function (e) {
+                    options.getData($(this).parent().attr('id'), $(this).html());
+                })
+            }
+
+            tree(options) {
+                let data = options.data;
+                let arrs = options.arrs;
+                let tree = options.ele;
+                let cascade = options.cascade;
+
+
+                $(tree).on("click", ".isShow", function () {
+                    let that = this;
+                    isShow(that);
+                })
+
+                //双击
+                // $(tree).on("dblclick", "a",function(){
+                // 	let that = this;
+                // 	isShow(that);
+                // })
+
+                function isShow(that) {
+                    //:visible 判断当前元素是否可见。
+                    //[0]  只改变第一个
+                    if ($(that).parent().find("ul").is(":visible")) {
+                        $($(that).parent().find("ul")[0]).hide();
+                        // $(that).removeClass("iconxiangxia").addClass('iconxiangyou')
+                        $(that).attr("style", 'transform:rotate(-90deg)');
+                    } else {
+                        if ($(that).parent().find("ul").length > 0) {
+                            // $(that).removeClass("iconxiangyou").addClass('iconxiangxia')
+                            $(that).attr("style", 'transform:rotate(0deg)');
+                        } else {
+                            $(that).attr("style", 'opacity: 0;');
+                        }
+                        $($(that).parent().find("ul")[0]).show();
+                    }
+                }
+
+                //判断父级选中状态
+                function checkParent(param) {
+                    //iconjianhao
+                    //半选中没有cheked
+                    if ($(param).is(':checked')) {
+                        let temp = $(param).parent().parent().find("input");
+                        let isChecked = true;
+                        //判断子级是否都选中了,都选中了,父级为选中; 子级没有全部选中,则为半选中
+                        $.each(temp, function (index, item) {
+                            if (!item.checked) {
+                                isChecked = false;
+                            }
+                        });
+                        if (isChecked) {
+                            $(param).parent().parent().prev().prev().prev().children('i').removeClass("iconjianhao");
+                            $(param).parent().parent().prev().prev().prev().children('i').addClass("iconicon-checkbox");
+                            $(param).parent().parent().prev().prev().prev().prev().prop("checked", 'true');
+                        } else {
+                            $(param).parent().parent().prev().prev().prev().children('i').removeClass("iconicon-checkbox");
+                            $(param).parent().parent().prev().prev().prev().children('i').addClass("iconjianhao");
+                        }
+                    } else {
+                        let temp = $(param).parent().parent().find("input");
+                        let isChecked = false;
+                        //判断子级是否有checked的，没有就取消父级的选中状态
+                        $.each(temp, function (index, item) {
+                            if (item.checked) {
+                                isChecked = true;
+                            }
+                        });
+                        if (!isChecked) {
+                            $(param).parent().parent().prev().prev().prev().children('i').removeClass("iconjianhao");
+                            $(param).parent().parent().prev().prev().prev().children('i').removeClass("iconicon-checkbox");
+                            $(param).parent().parent().prev().prev().prev().prev().removeAttr("checked");
+                        } else {
+                            $(param).parent().parent().prev().prev().prev().children('i').removeClass("iconicon-checkbox");
+                            $(param).parent().parent().prev().prev().prev().children('i').addClass("iconjianhao");
+                        }
+                    }
+                    let asd = $(param).parent().parent().prev().prev().prev().prev()[0];
+                    if (asd != undefined) {
+                        checkParent(asd)
+                    }
+                    return;
+                }
+
+                //判断子级选中状态
+                function checkChildren(param) {
+                    if (param.checked) {
+                        // $(param).next().children('i').addClass("iconicon-checkbox");
+                        $(param).next().next().next().next().children().find("label").children('i').addClass("iconicon-checkbox");
+                        $(param).next().next().next().next().children().find("input").prop("checked", 'true');
+                    } else {
+                        $(param).next().next().next().next().children().find("label").children('i').removeClass("iconjianhao");
+                        $(param).next().next().next().next().children().find("label").children('i').removeClass("iconicon-checkbox");
+                        $(param).next().next().next().next().children().find("input").removeAttr("checked");
+                    }
+                }
+
+                $(tree).on("click", "input", function () {
+                    //先子级在父级避免出错（父级里面有判断子级是否选中的）
+                    if ($(this)[0].checked) {
+                        $(this).next().children('i').addClass("iconicon-checkbox");
+                    } else {
+                        $(this).next().children('i').removeClass("iconicon-checkbox");
+                        $(this).next().children('i').removeClass("iconjianhao");
+                    }
+                    if (cascade) {
+                        checkChildren(this);
+                        checkParent(this);
+                    }
+                })
+
+                //使点击a标签等同于点击
+                $(tree).on("click", "a", function () {
+                    if ($(this).prev().prev().prev()[0].checked) {
+                        $(this).prev().prev().prev().removeAttr("checked");
+                        $(this).prev().prev().children('i').removeClass("iconicon-checkbox");
+                        $(this).prev().prev().children('i').removeClass("iconjianhao");
+                    } else {
+                        $(this).prev().prev().prev().prop("checked", 'true');
+                        $(this).prev().prev().children('i').addClass("iconicon-checkbox");
+                    }
+                    //判断是否为子父级联
+                    if (cascade) {
+                        checkChildren($(this).prev().prev().prev()[0]);
+                        checkParent($(this).prev().prev().prev()[0]);
+                    }
+                })
+
+                //id相等就选中
+                const insert = (children, arr) => {
+                    for (let a in arr) {
+                        if (children.id == arr[a]) {
+                            children.checked = true
+                        }
+                    }
+                }
+
+                //设置tree节点是否选中
+                function setCheckedNodes(data, arrs) {
+                    for (let x in data) {
+                        let children = data[x].children;
+                        if (children != null) {
+                            for (let y in children) {
+                                insert(children[y], arrs)
+                                setCheckedNodes(children, arrs);
+                            }
+                        } else {
+                            return;
+                        }
+                    }
+                }
+
+                //递归
+                let ids = 0;
+                let that = this;
+
+                function createTree(data) {
+                    let uuid = that.uuid();
+                    let str = '<ul class="leg_tree">';
+                    for (let i = 0; i < data.length; i++) {
+                        ids++;
+                        str +=
+                            '<li><i class="isShow iconfont iconxiangxia"></i>'
+                        if (data[i].checked) {
+                            str += '<input id="' + uuid + ids + '" type="checkbox" checked ' +
+                                'data-show="' + data[i].open + '" value="' + data[i].id + '"/>' +
+                                '<label class="label" for="' +
+                                uuid + ids + '"><i class="iconfont iconicon-checkbox"/>'
+                        } else {
+                            str += '<input id="' + uuid + ids + '" type="checkbox" ' +
+                                'data-show="' + data[i].open + '" value="' + data[i].id + '"/>' +
+                                '<label class="label" for="' +
+                                uuid + ids + '"><i class="iconfont"/>'
+                        }
+                        str += '</label><i class="iconfont ' + data[i].ico + '"/><a href="#">' + data[i].name + '</a>';
+                        if (data[i].children && data[i].children != '') {
+                            str += createTree(data[i].children);
+                        }
+                        str += '</li>';
+                    }
+                    ;
+                    str += '</ul>';
+                    return str;
+                };
+
+                //通过ID选中Array.isArray(variable)
+                if (Array.isArray(arrs)) { //判断是否为数组
+                    setCheckedNodes(data, arrs);
+                }
+
+                //把树放到容器
+                $(tree).html(createTree(data));
+
+                //通过原始数据选中
+                $.each($("input:checkbox:checked"), function () {
+                    checkParent(this)
+                });
+
+                //是否展开
+                $.each($("input"), function () {
+                    if (this.getAttribute('data-show') == 'false') {
+                        $(this).parent().find("ul").hide();
+                        if ($(this).parent().find("ul").length > 0) {
+                            $(this).prev()[0].setAttribute("style", 'transform:rotate(-90deg)');
+                        } else {
+                            $(this).prev()[0].setAttribute("style", 'opacity: 0;');
+                        }
+
+                    } else {
+                        $(this).parent().find("ul").show();
+                        if ($(this).parent().find("ul").length > 0) {
+                            $(this).prev()[0].setAttribute("style", 'transform:rotate(0deg)');
+                        } else {
+                            $(this).prev()[0].setAttribute("style", 'opacity: 0;');
+                        }
+                    }
+                });
+            }
+        }
+
+        // if (typeof module !== 'undefined' && module.exports) {
+        //   module.exports = MyLeg;
+        // }
+
+        // if (typeof define === 'function') {
+        //   define(() => MyLeg);
+        // }
+
+        $.extend({
+            tree: function (options) {
+                return new MyLeg(options).init();
+            },
+            getCheckedNodes: function () {
+                return new MyLeg().getCheckedNodes();
+            },
+            getHalfSelected: function () {//半选中id集合
+                return new MyLeg().getHalfSelected();
+            },
+            getAll: function () {//所有选中id集合
+                return new MyLeg().getAll();
+            },
+            synTree: (options) => {
+                return new MyLeg().synTree(options);
+            }
+        })
+
+        global.leg = global.$ = $;
+
+    })(this)
+	</script>
+	<script>
+		var data = [{
+			"name": "所有权限123",
+			"open": true,
+			"id": 999,
+			"ico": 'iconyonghu',
+			"checked": false,
+			"children": [{
+					"name": "储物柜管理",
+					"open": true,
+					"ico": 'iconshezhi',
+					"id": 99,
+					"checked": false,
+					"children": [{
+							"name": "储物柜列表",
+							"id": 1,
+							"ico": 'icon-sousuo',
+							"checked": false,
+							"open": false,
+							"children": [{
+									"name": "详情",
+									"id": 7,
+									"ico": false,
+									"checked": true
+								},
+								{
+									"name": "修改价格",
+									"id": 43,
+									"ico": false,
+									"checked": false
+								}
+							]
+						},
+						{
+							"name": "计费类型",
+							"id": 36,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": [{
+									"name": "删除",
+									"id": 37,
+									"ico": false,
+									"checked": false
+								},
+								{
+									"name": "提交编辑",
+									"id": 52,
+									"ico": false,
+									"checked": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "广告业务",
+					"open": true,
+					"ico": false,
+					"id": 999,
+					"checked": false,
+					"children": [{
+							"name": "广告列表",
+							"id": 22,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": [{
+									"name": "编辑",
+									"id": 23,
+									"ico": false,
+									"checked": false
+								},
+								{
+									"name": "添加",
+									"id": 24,
+									"ico": false,
+									"checked": false
+								},
+								{
+									"name": "删除",
+									"id": 25,
+									"ico": false,
+									"checked": false
+								}
+							]
+						},
+						{
+							"name": "广告资源",
+							"id": 26,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": [{
+									"name": "编辑",
+									"id": 27,
+									"ico": false,
+									"checked": false
+								},
+								{
+									"name": "上传",
+									"id": 28,
+									"ico": false,
+									"checked": false
+								},
+								{
+									"name": "删除",
+									"id": 29,
+									"ico": false,
+									"checked": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "个人中心",
+					"open": true,
+					"ico": false,
+					"checked": false,
+					"children": [{
+							"name": "资料修改",
+							"id": 5,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": []
+						},
+						{
+							"name": "密码修改",
+							"id": 6,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": []
+						},
+						{
+							"name": "资金账户",
+							"id": 41,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": [{
+									"name": "资金账户绑定微信",
+									"id": 39,
+									"ico": false,
+									"checked": false
+								},
+								{
+									"name": "资金账户绑定支付宝",
+									"id": 40,
+									"ico": false,
+									"checked": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "日志管理",
+					"open": true,
+					"ico": false,
+					"checked": false,
+					"children": [{
+							"name": "错误日志",
+							"id": 30,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": [{
+									"name": "详情",
+									"id": 31,
+									"ico": false,
+									"checked": false
+								},
+								{
+									"name": "删除",
+									"id": 32,
+									"ico": false,
+									"checked": false
+								}
+							]
+						},
+						{
+							"name": "操作日志",
+							"id": 33,
+							"ico": false,
+							"checked": false,
+							"open": false,
+							"children": []
+						}
+					]
+				},
+				{
+					"name": "消息推送",
+					"open": false,
+					"ico": false,
+					"checked": false,
+					"children": [{
+							"name": "普通消息",
+							"id": 34,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": []
+						},
+						{
+							"name": "图文消息",
+							"id": 35,
+							"ico": false,
+							"checked": false,
+							"open": true,
+							"children": []
+						}
+					]
+				}
+			]
+		}];
+
+		var arrs = []
+		// var arrs = [1, 2, 3, 48, 5, 6, 7, 8, 9, 10]
+
+		/*
+		生成tree的位置 data为tree数据、arrs为选中的id可为空
+		arrs可填可不填 填写需为数组
+		data数据中的只有name、id、checked、open、ico、children
+			其中open为是否展开	
+		*/
+
+		$("#demo").on("click", () => {
+			alert(leg.getCheckedNodes())//选中
+			console.log(leg.getHalfSelected())//半选
+			console.log(leg.getAll());//全选及半选
+		})
+		leg.tree({
+			ele:".tree",//选者
+			data:data,//数据
+			arrs:arrs,//选中的id
+			cascade:true,//级联
+//			onAsync:true//暂无此
+		});
+		leg.synTree({
+			ele:".tree1",
+			url:"./tree.json",
+			dataStyle:(res)=>{//修改后台返回的数据格式
+				return res.list;
+			},
+			getData:(id,name)=>{//返回的id和标题
+				console.log(id+"======"+name)
+			}
+		});
+	</script>
+
+</html>

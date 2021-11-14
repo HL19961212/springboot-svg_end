@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.UserDao">
+    <insert id="save" parameterType="com.kuang.entity.User">
+        insert into 测试表 values(#{id},#{name},#{value})
+    </insert>
+    <select id="findAll" resultType="com.kuang.entity.User">
+        select * from 测试表
+    </select>
+    <select id="findNew" resultType="com.kuang.entity.User">
+        select * from 测试表
+    </select>
+    <delete id="delete" parameterType="int">
+        delete from 测试表 where id=#{id}
+    </delete>
+</mapper>

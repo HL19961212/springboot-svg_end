@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial=scale=1">
+    <title>List</title>
+    <link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/layer.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/layout.css}" type="text/css" rel="stylesheet"/>
+    <style>
+        table{
+            width: 90% !important;
+            margin: 150px auto !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<form id="listForm" th:action="@{/userdata_dele}">
+<table class="table table-hover table-bordered" id="mytable">
+    <thead>
+    <tr>
+        <th>选中</th>
+        <th>编号</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>登录时间</th>
+        <th>维护操作</th>
+        <!--			<th>操作</th>-->
+
+    </tr>
+
+    </thead>
+    <tbody id="listTable">
+    <tr th:each="recent100,iterStat : ${recent}" th:class="${iterStat.odd}? 'odd'">
+        <td><input type="checkbox" name="item" th:value="${recent100.id}"/></td>
+        <td th:text="${recent100.id}"></td>
+        <td th:text="${recent100.username}"></td>
+        <td th:text="${recent100.password}"></td>
+        <td th:text="${recent100.loginTime}"></td>
+        <td>
+            <a th:href="'/software/'+${recent100.id}"><input type="button" name="" value="删除" class="btn btn-success"/></a>
+            <input type="button" name="" value="修改" class="btn btn-info" onclick="modify(this)" />
+        </td>
+    </tr>
+    </tbody>
+    <tr>
+
+        <td colspan="13"><a href="javascript:;" class="btn btn-danger" role="button" onclick="delAll(this)">全部删除</a>
+
+            <a href="userdata_add"><input type="button" name="" value="新增" class="btn btn-success" /></a>
+        </td>
+
+        <!--
+                <td colspan="6"><input type="button" name="" value="新增" class="btn btn-success" onclick="addList()" /></td>
+                <td colspan="6"><a href="javascript:;" class="btn btn-success" role="button" onclick="addList()">新增</a></td>
+        -->
+    </tr>
+
+</table>
+</form>
+
+<p>当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span th:text="${pageInfo.pages}"></span> 页,共 <span th:text="${pageInfo.total}"></span> 条记录</p>
+<a th:href="@{/userdata}">首页</a>
+<a th:href="@{/userdata(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+<a th:href="@{/userdata(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+<a th:href="@{/userdata(pageNum=${pageInfo.pages})}">尾页</a>
+
+
+<script type="text/javascript">
+    //del单点功能
+    //添加数据的时候，需要添加对应的点击事件onclick=del(this)，然后removeChild移除
+    function del(obj){
+        var oParentnode = obj.parentNode.parentNode;
+        var olistTable = document.getElementById('listTable');
+        olistTable.removeChild(oParentnode);
+    }
+
+    //全选
+    function checkAll(c){
+        var status = c.checked;
+        var oItems = document.getElementsByName('item');
+        for(var i=0;i<oItems.length;i++){
+            oItems[i].checked=status;
+        }
+    }
+    //delAll功能
+    //通过checkbox的checked属性当做开关，然后通过遍历删除checked=true对应的tr行。
+    function delAll(){
+         document.getElementById("listForm").submit();
+    }
+    //modify功能
+    //点击“修改”后，将td的innerHTML值传到表单中的input当中，同时用一个参数记录下点击的行数rowIndex,"更新"按钮先找见需要修改的行数的Tr，然后将表单的值传给每个td
+    function modify(obj){
+        var oNum = document.getElementById('num');
+        var oZhibiao = document.getElementById('zhibiao').value;
+        var oPingjing = document.getElementById('pingjing').value;
+        var oPingji = document.getElementById('pingji').value;
+        var oLiangbiao = document.getElementById('liangbiao').value;
+        var oShuoming = document.getElementById('shuoming').value;
+        var oTr = obj.parentNode.parentNode;
+        var aTd = oTr.getElementsByTagName('td');
+        rowIndex = obj.parentNode.parentNode.rowIndex;
+        oNum.value = aTd[1].innerHTML;
+        oZhibiao.value = aTd[2].innerHTML;
+        oPingjing.value = aTd[3].innerHTML;
+        oPingji.value = aTd[4].innerHTML;
+        oLiangbiao.value = aTd[5].innerHTML;
+        oShuoming.value = aTd[6].innerHTML;
+        console.log(aTd[4].innerHTML);
+        alert(i);
+
+    }
+    //update功能
+    function update(){
+        var oNum = document.getElementById('num');
+        var oZhibiao = document.getElementById('zhibiao').value;
+        var oPingjing = document.getElementById('pingjing').value;
+        var oPingji = document.getElementById('pingji').value;
+        var oLiangbiao = document.getElementById('liangbiao').value;
+        var oShuoming = document.getElementById('shuoming').value;
+        var oMytable = document.getElementById('mytable');
+        //alert(rowIndex);
+        //var aTd = rowIndex.cells;
+        console.log(oMytable.rows[rowIndex].cells)
+        oMytable.rows[rowIndex].cells[1].innerHTML = oNum.value;
+        oMytable.rows[rowIndex].cells[2].innerHTML = oZhibiao.value;
+        oMytable.rows[rowIndex].cells[3].innerHTML = oPingjing.value;
+        oMytable.rows[rowIndex].cells[4].innerHTML = oPingji.value;
+        oMytable.rows[rowIndex].cells[5].innerHTML = oLiangbiao.value;
+        oMytable.rows[rowIndex].cells[6].innerHTML = oShuoming.value;
+    }
+</script>
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script>
+    var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+    //loading层
+    var index = layer.load(1, {
+        shade: [0.4,'#000'], //0.1透明度的白色背景
+        time: 1500
+    });
+</script>
+</body>
+</html>

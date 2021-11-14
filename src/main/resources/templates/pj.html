@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table/style.css}"/>
+    <title>前端petri网</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #quyu {
+            border: 2px solid;
+            width: 1500px;
+            height: 1010px;
+            margin: 0 auto;
+        }
+
+        #quyu #toubu {
+            border: 2px solid #74A8F5;
+            width: 1500px;
+            height: 150px;
+            margin: 0px;
+            background: #5494F3
+        }
+
+        #quyu #toubu #toubuleft {
+            width: 400px;
+            height: 130px;
+            margin: 20px;
+            float: left;
+        }
+
+        #quyu #toubu #touburight {
+            width: 1020px;
+            height: 130px;
+            margin: 20px;
+            float: left;
+        }
+
+        #quyu #neirong {
+            border: 2px solid #74A8F5;
+            width: 1480px;
+            height: 820px;
+            margin: 10px
+        }
+
+        #quyu #neirong #left {
+            border: 2px solid #74A8F5;
+            width: 240px;
+            height: 800px;
+            margin: 5px;
+            float: left;
+        }
+
+        /*#neirong #left{border: 2px solid #74A8F5;width: 180px;height: 800px;margin: 2px;float:left}*/
+
+        #quyu #neirong #leftNeirong {
+            border: 2px solid #74A8F5;
+            width: 1200px;
+            height: 800px;
+            margin: 5px;
+            float: left;
+        }
+
+
+        <!--
+        --------------------------- 增加的内容 -------------------------------- >
+        #d1 {
+            width: 250px;
+            height: 400px;
+            background-color: #cccccc;
+            border: 2px solid black;
+            left: 30px;
+            top: 30px;
+            position: absolute;
+        }
+
+        #d1_head {
+            height: 30px;
+            background-color: blue;
+            color: white;
+            font-size: 20pt;
+        }
+
+        #d1_body {
+
+            font-size: 16pt;
+            background-color: #cccccc;
+        }
+
+
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td, th {
+            padding: 0;
+        }
+
+        .pure-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+        }
+
+        .pure-table caption {
+            color: #000;
+            font: italic 85%/1 arial, sans-serif;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        .pure-table td, .pure-table th {
+            border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: .5em 1em;
+        }
+
+        .pure-table thead {
+            background-color: #e0e0e0;
+            color: #000;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .pure-table td {
+            background-color: transparent;
+        }
+
+        .pure-table-odd td {
+            background-color: #f2f2f2;
+        }
+
+        <!--
+        结束
+
+        -->
+        ul li {
+            list-style: none;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="quyu">
+    <div id="toubu">
+        <div id="toubuleft">
+            <img th:src="@{/css/images/sea.gif}">
+        </div>
+        <div id="touburight">
+            <h1 id="title">
+                <font color="white">海洋云计算petri网---动态实时监控fvcom</font>
+                <br/>
+                <font color="white" size="5">Ocean cloud computing petri net-dynamic real-time monitoring fvcom</font>
+                <br/>
+                <br/>
+
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <a th:href="@{cluster_update1}"><font color="black" th:size="5">集群运行资源</font></a>&nbsp&nbsp
+                <a th:href="@{heatmap}"><font color="black" th:size="5">预报系统运行性能</font></a>&nbsp&nbsp
+                <a th:href="@{heatmap}"><font color="black" th:size="5">运行综合性能</font></a>&nbsp&nbsp
+
+
+            </h1>
+        </div>
+    </div>
+
+    <div id="neirong">
+        <div id="left">
+            <div id="d1_head"><b>图层目录</b></div>
+            <div id="d1_body">
+                <ul style="cursor:pointer;list-style: none;">
+                    <li>
+                        <form>
+                            <input type="checkbox" style="zoom: 140%;" id="check3" onclick="displayResult2()"><span
+                                onclick="displayResult2()"><b>动态Petri网</b></span>
+                        </form>
+                    </li>
+                    <ul style="cursor:pointer;list-style: none;display: none" id="u1">
+                        <li style="cursor:pointer;list-style: none;" id="data">
+                            <form>
+                                &nbsp&nbsp&nbsp&nbsp
+                                <input type="checkbox" style="zoom: 140%;" id="check1" onclick="displayResult()">资源占用
+                            </form>
+                        </li>
+                        <li style="cursor:pointer;list-style: none;" id="time">
+                            <form>
+                                &nbsp&nbsp&nbsp&nbsp
+                                <input type="checkbox" style="zoom: 140%;" id="check2" onclick="displayResult1()">模块计算时间
+                            </form>
+                        </li>
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <!-- ========================       petri ====================-->
+        <div id="leftNeirong">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <td align="center" class="biaoti" height="60">性能瓶颈评测</td>
+                </tr>
+                <tr>
+                    <td align="right" height="25">2021-10-21---2021-11-20</td>
+                </tr>
+            </table>
+            <table width="100%" border="2" cellspacing="1" cellpadding="4" bgcolor="#cccccc" class="tabtop13" align="center">
+                <tr>
+
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">诊断项</th>
+                    <th width="20%" class="btbg font-center titfont" rowspan="2">详情</th>
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">状态</th>
+                    <th width="20%" class="btbg font-center titfont" rowspan="2">操作</th>
+
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+                    <td th:text="时间"></td>
+                    <td th:text="${mutil.time}"></td>
+                    <td th:text="最近性能指标数据"></td>
+                    <td width="4%" class="btbg font-center"></td>
+                </tr>
+
+                <tr>
+                    <td th:text="计算节点CPU使用率"></td>
+                    <td th:text="${mutil.cpu}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="计算任务（进程）CPU使用率"></td>
+                    <td th:text="${mutil.process_cpu}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="CPU等待IO的时间占比"></td>
+                    <td th:text="${mutil.cpu_io}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="系统内核占用CPU时间"></td>
+                    <td th:text="${mutil.sys_cpu}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="计算节点内存使用率"></td>
+                    <td th:text="${mutil.node_mem}"></td>
+                    <td th:text="使用率过高"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="计算任务（进程）内存使用率"></td>
+                    <td th:text="${mutil.process_mem}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="SWAP使用率"></td>
+                    <td th:text="${mutil.SWAP}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="磁盘IO时间"></td>
+                    <td th:text="${mutil.diskio}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="磁盘空间使用率"></td>
+                    <td th:text="${mutil.filesys}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="网络发送丢包率"></td>
+                    <td th:text="${mutil.transmit}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr>
+                    <td th:text="网络接收丢包率"></td>
+                    <td th:text="${mutil.receive}"></td>
+                    <td th:text="正常，未超过安全水位"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.OceanUserDao">
+
+    <select id="findByUsername" parameterType="java.lang.String" resultType="com.kuang.entity.OceanUser">
+        select * from oceanuser where username=#{username}
+    </select>
+    <select id="findByToken" parameterType="java.lang.String" resultType="com.kuang.entity.OceanUser">
+        select * from oceanuser where token=#{token}
+    </select>
+    <update id="save" parameterType="com.kuang.entity.OceanUser">
+        update oceanuser set token=#{token},loginTime=#{loginTime},expireTime=#{expireTime} where username=#{username} and password=#{password}
+    </update>
+    <insert id="insert" parameterType="com.kuang.entity.OceanUser">
+        insert into oceanuser values(#{id},#{username},#{password},#{token},#{expireTime},#{loginTime})
+    </insert>
+
+</mapper>

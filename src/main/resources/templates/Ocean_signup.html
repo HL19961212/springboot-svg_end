@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:href="@{/css/style_login.css}" type="text/css" rel="stylesheet"/>
+    <script th:src="@{/js/script_login.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="welcome">
+        <p style="margin-top:5px">数值预报自动优化分析系统</p>
+        <div class="box">
+            <!-- 注册 -->
+            <div class="signup">
+                <h1>Register</h1>
+                <form autocomplete="off" action="/oceanuserinsert">
+                    <input type="text" name="username" placeholder="Username">
+<!--                    <input type="email" placeholder="Email">-->
+                    <input type="password"name="password" placeholder="Password">
+                    <input type="password" placeholder="Confirm Password">
+                    <button class="button submit">Create Account</button>
+                </form>
+            </div>
+
+            <!-- 登录 -->
+            <!--
+                  <div class="signin">
+                    <h1>Sign In</h1>
+                    <form class="more-padding" autocomplete="off">
+                      <input type="text" placeholder="Username">
+                      <input type="password" placeholder="Password">
+                      <div class="checkbox">
+                        <input type="checkbox" id="remember" style="position:absolute;left:-60px;" /><label for="remember" style="position:absolute;left:-35px;">Remember Me</label>
+                      </div>
+
+                        <div class="box1">
+                            <button class="buttom sumbit" style="position:absolute;left:250px;">Login</button>
+                            <button class="buttom reset" style="position:absolute;left:350px;">Reset</button>
+                        </div>
+                    </form>
+                  </div>
+            -->
+            <!--
+                  <div style="display: flex;flex-direction: row;">
+                      <a href="table2-2.html"><button class="button" id="signup">Sign Up</button></a>
+                      <button class="button" id="forget">Forget pwd</button>
+                  </div>
+            -->
+        </div>
+    </div>
+</div>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script th:src="@{/js/script_login.js}"></script>
+</body>
+</html>

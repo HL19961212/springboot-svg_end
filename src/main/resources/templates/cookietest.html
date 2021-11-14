@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>cookie存储</title>
+    <script>
+        function getCookie(name)
+        {
+            var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+            if(arr=document.cookie.match(reg))
+                return unescape(arr[2]);
+            else
+                return null;
+        }
+        var username=getCookie("username");
+        var password=getCookie("password");
+        var token=getCookie("token");
+        document.write(username+" "+password+" "+token);
+        document.write('<a href=table2-pj?token='+token+'>ddd</a>');
+        document.getElementById('testtoken').value = token;
+
+        // var foobar; //全局变量声明
+        // function passvar(){
+        //     foobar = document.getElementById('textfield').value;
+        //     //document.write('传递变量成功');
+        //     alert('传递变量成功!');
+        // }
+        // //显示变量
+        // function displayvar(){
+        //     alert('变量值为:'+foobar);
+        // }
+        // //引用变量
+        // function varpass(){
+        //     document.getElementById('textdispaly').value = token;
+        //     //foobar = document.getElementById('textdispaly').value ;
+        // }
+        function Go() {
+            window.location.href='table2-1?token='+token;
+        }
+    </script>
+
+</head>
+
+
+<body>
+<input type="button" onclick="Go()" value="通过js方法传递参数" />
+</body>
+
+
+
+</script>
+
+</html>

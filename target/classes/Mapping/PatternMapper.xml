@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.PatternDao">
+
+    <select id="findAll" parameterType="java.lang.String" resultType="com.kuang.entity.Pattern">
+        select * from monitoring
+    </select>
+    <insert id="add" parameterType="com.kuang.entity.Pattern">
+        insert into monitoring values(#{id},#{zhibiao},#{pj},#{pjjibie},#{biaozhun},#{explain})
+    </insert>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from monitoring where id=#{id}
+    </delete>
+
+</mapper>

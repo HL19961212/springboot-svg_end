@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400|Lora");
+
+body {
+  background: #B8CDEB;
+}
+
+/* 容器的样式 */
+.container {
+  margin: auto;
+  width: 650px;
+  height: 550px;
+  position: relative;
+}
+
+.welcome {
+  background: #f6f6f6;
+  width: 650px;
+  height: 460px;
+  position: absolute;
+  top: 20%;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.box {
+    position: absolute;
+    top: 70px;
+    left:0px;
+    background: #C5C4C9;
+    width: 650px;
+    height: 400px;
+    border-radius: 5px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+}
+
+.nodisplay {
+  display: none;
+  transition: all 0.5s ease;
+}
+
+
+/* 字体和按钮的样式 */
+h1 {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  margin-top: 30px;
+  text-transform: uppercase;
+  color: #f6f6f6;
+  font-size: 2em;
+  letter-spacing: 8px;
+}
+
+.title {
+  font-family: "Lora", serif;
+  color: #8e9aaf;
+  font-size: 1.8em;
+  line-height: 1.1em;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 300;
+  margin-top: 20%;
+}
+
+.desc {
+  margin-top: -8px;
+}
+
+.account {
+	margin-top: 8%;
+	font-size: 10px;
+	position: absolute;
+	right: 15px;
+	bottom:70px;
+	letter-spacing: 6px;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18pt;
+  letter-spacing: 6px;
+  color: #8e9aaf;
+  text-align: center;
+  width: 650px;height: 60px;
+  line-height: 60px;	
+}
+
+
+.smaller {
+  width: 130px;
+  height: 130px;
+  top: 48%;
+  left: 30%;
+  opacity: 0.9;
+}
+
+button {
+  padding: 12px;
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  border-radius: 10px;
+  margin: auto;
+  outline: none;
+  display: block;
+}
+
+button:hover {
+  background: #eac7cc;
+  color: #f6f6f6;
+  transition: background-color 1s ease-out;
+}
+
+.button {
+  margin-top: 3%;
+  background: #f6f6f6;
+  color: #ce7d88;
+  border: solid 1px #eac7cc;
+}
+
+/* 表单样式 */
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 7px;
+}
+
+.more-padding {
+  padding-top: 10px;
+}
+
+.more-padding input {
+  padding: 12px;
+}
+
+/*
+.more-padding .sumbit {
+  margin-top: 45px;
+}
+*/
+
+.box1{
+	display: flex;
+	flex-direction: row;
+	margin-top: 70px;
+}
+
+
+/*
+.box1 buttom submit{
+	margin-top: 45px;
+	border-color: #ce7d88;
+	left:60px;
+}
+
+.box1 buttom reset{
+	margin-top: 45px;
+	border-color: #ce7d88;
+	left:120px;
+}
+*/
+
+
+.sumbit .reset {
+  margin-top: 25px;
+  padding: 12px;
+  border-color: #ce7d88;
+}
+
+#signup{
+	position: absolute;
+	right: 20px;bottom: 15px;
+	
+}
+
+#forget{
+	position: absolute;
+	right: 140px;bottom: 15px;
+	
+}
+
+
+.sumbit.reset:hover {
+  background: #cbc0d3;
+  border-color: #bfb1c9;
+}
+
+input {
+  background: #B0BCCC;
+  width: 55%;
+  margin-top: 5px;
+  color: #ce7d88;
+  border: none;
+  border-bottom: 1px solid rgba(246, 246, 246, 0.5);
+  padding: 9px;
+  font-weight: 100;
+}
+
+input::placeholder {
+  color: #f6f6f6;
+  letter-spacing: 2px;
+  font-size: 1.0em;
+  font-weight: 100;
+}
+
+input:focus {
+  color: #000;
+  outline: none;
+  border-bottom: 1.2px solid rgba(206, 125, 136, 0.7);
+  font-size: 1.0em;
+  transition: 0.8s all ease;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+}
+
+label {
+  font-family: "Open Sans", sans-serif;
+  color: #ce7d88;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+}
+
+.checkbox {
+  display: inline;
+  white-space: nowrap;
+  position: relative;
+  top: 25px;
+}
+
+input[type=checkbox] {
+  width: 15px;
+  background: #ce7d88;
+}
+
+.checkbox input[type=checkbox]:checked + label {
+  color: #ce7d88;
+  transition: 0.5s all ease;
+}

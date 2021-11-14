@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial=scale=1">
+    <title>优化方案</title>
+    <link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/layer.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/layout.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/pdfstyle.css}" type="text/css" rel="stylesheet">
+    <style type="text/css">
+
+        h1{
+            font-size: 200%;
+            font-family: "隶书";
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        header, section {
+            overflow: hidden;
+        }
+        ul {
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        li {
+            display: block; /* i.e., suppress marker */
+            color: black;
+            height: 4em;
+            width: 25%;
+            margin: 0;
+            float: left;
+            background-color: green;
+            text-align: center;
+            line-height: 4em;
+        }
+
+        aside {
+            width: 20%;
+            float: left;
+            text-align: center;
+        }
+
+        aside a {
+            display: block;
+            height: 4em;
+            color: blue;
+        }
+
+        article {
+            padding: 2em 0;
+            width: 80%;
+            float: left;
+        }
+
+    </style>
+</head>
+
+<body>
+<header>
+    <nav>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </nav>
+</header>
+<section>
+    <aside>
+
+
+    </aside>
+    <article >
+            <button id="renderPdf">导出优化方案</button>
+
+
+
+
+
+            <h1 align="center" >作业类型分析</h1>
+            <table class="table table-hover table-bordered" id="mytable">
+
+                <thead>
+                <tr>
+                    <th>FVCOM运行指标</th>
+                    <th>资源占用详情</th>
+                    <th>计算程序类型</th>
+
+                </tr>
+
+                </thead>
+                <tbody id="listTable">
+                <tr th:each="recent,iterStat : ${mutil}" th:class="${iterStat.odd}? 'odd'">
+
+                    <td>FVCOM进程CPU使用率</td>
+                    <td th:text="${recent.process_cpu}"></td>
+                    <td th:text="${computercompiler.cpu}"></td>
+
+                </tr>
+
+
+                <tr th:each="recent3,iterStat : ${mutil}" th:class="${iterStat.odd}? 'odd'">
+
+                    <td>DiskIO时间占比</td>
+                    <td th:text="${recent3.diskio}"></td>
+                    <td th:text="${computercompiler.diskio}"></td>
+
+                </tr>
+
+                </tbody>
+
+
+            </table>
+
+            <tr></tr>
+
+
+            <h1 align="center">集群工作节点得分</h1>
+            <table class="table table-hover table-bordered" id="mytable2">
+
+                <thead>
+                <tr>
+                    <th>节点</th>
+                    <th>节点CPU使用率</th>
+                    <th>节点内存使用率</th>
+                    <th>磁盘IO时间占比</th>
+                    <th>磁盘空间使用率</th>
+                    <th>网络发送丢包率</th>
+                    <th>网络接收丢包率</th>
+                    <th>计算能力得分</th>
+                    <th>IO能力得分</th>
+
+                </tr>
+
+                </thead>
+                <tbody id="listTable2">
+                <tr th:each="findRecent,iterStat : ${mutil_139}" th:class="${iterStat.odd}? 'odd'">
+
+                    <td>工作节点1</td>
+                    <td th:text="${findRecent.cpu}"></td>
+                    <td th:text="${findRecent.node_mem}"></td>
+                    <td th:text="${findRecent.diskio}"></td>
+                    <td th:text="${findRecent.filesys}"></td>
+                    <td th:text="${findRecent.receive}"></td>
+                    <td th:text="${findRecent.transmit}"></td>
+                    <td th:text="${cpsocre_139}"></td>
+                    <td th:text="${iosocre_139}"></td>
+
+                </tr>
+
+                <tr th:each="findRecent2,iterStat : ${mutil_149}" th:class="${iterStat.odd}? 'odd'">
+
+                    <td>工作节点2</td>
+                    <td th:text="${findRecent2.cpu}"></td>
+                    <td th:text="${findRecent2.node_mem}"></td>
+                    <td th:text="${findRecent2.diskio}"></td>
+                    <td th:text="${findRecent2.filesys}"></td>
+                    <td th:text="${findRecent2.receive}"></td>
+                    <td th:text="${findRecent2.transmit}"></td>
+                    <td th:text="${cpsocre_149}"></td>
+                    <td th:text="${iosocre_149}"></td>
+
+                </tr>
+                <tr th:each="findRecent3,iterStat : ${mutil_150}" th:class="${iterStat.odd}? 'odd'">
+
+                    <td>工作节点3</td>
+                    <td th:text="${findRecent3.cpu}"></td>
+                    <td th:text="${findRecent3.node_mem}"></td>
+                    <td th:text="${findRecent3.diskio}"></td>
+                    <td th:text="${findRecent3.filesys}"></td>
+                    <td th:text="${findRecent3.receive}"></td>
+                    <td th:text="${findRecent3.transmit}"></td>
+                    <td th:text="${cpsocre_150}"></td>
+                    <td th:text="${iosocre_150}"></td>
+
+                </tr>
+
+                <tr th:each="findRecent4,iterStat : ${mutil}" th:class="${iterStat.odd}? 'odd'">
+
+                    <td>工作节点4</td>
+                    <td th:text="${findRecent4.cpu}"></td>
+                    <td th:text="${findRecent4.node_mem}"></td>
+                    <td th:text="${findRecent4.diskio}"></td>
+                    <td th:text="${findRecent4.filesys}"></td>
+                    <td th:text="${findRecent4.receive}"></td>
+                    <td th:text="${findRecent4.transmit}"></td>
+                    <td th:text="${cpsocre_151}"></td>
+                    <td th:text="${iosocre_151}"></td>
+
+                </tr>
+
+                <tr th:each="findRecent5,iterStat : ${mutil_152}" th:class="${iterStat.odd}? 'odd'">
+
+                    <td>工作节点5</td>
+                    <td th:text="${findRecent5.cpu}"></td>
+                    <td th:text="${findRecent5.node_mem}"></td>
+                    <td th:text="${findRecent5.diskio}"></td>
+                    <td th:text="${findRecent5.filesys}"></td>
+                    <td th:text="${findRecent5.receive}"></td>
+                    <td th:text="${findRecent5.transmit}"></td>
+                    <td th:text="${cpsocre_152}"></td>
+                    <td th:text="${iosocre_152}"></td>
+
+                </tr>
+
+                </tbody>
+
+
+            </table>
+
+
+
+            <h1 align="center">作业调度方案</h1>
+
+            <table class="table table-hover table-bordered" id="mytable3">
+
+                <thead>
+                <tr>
+                    <th>计算能力最高节点</th>
+                    <th>IO能力最高节点</th>
+                    <th>计算程序类型(计算密集)</th>
+                    <th>计算程序类型(IO密集)</th>
+                    <th>推荐节点</th>
+
+
+                </tr>
+
+                </thead>
+                <tbody id="listTable3">
+                <tr>
+
+
+                    <td th:text="${top1}"></td>
+                    <td th:text="${top2}"></td>
+                    <td th:text="${computercompiler.cpu}"></td>
+                    <td th:text="${computercompiler.diskio}"></td>
+                    <td th:text="${recommend}"></td>
+
+
+                </tr>
+                </tbody>
+
+
+            </table>
+
+
+    </article>
+</section>
+<footer>write by 210@OceanScience @2021-11-14</footer>
+
+<script th:src="@{/js/jsPdf.debug.js}" type="text/javascript"></script>
+<script th:src="@{/js/html2canvas.js}" type="text/javascript"></script>
+<script type="text/javascript">
+
+    var downPdf = document.getElementById("renderPdf");
+
+    downPdf.onclick = function() {
+        html2canvas(document.body, {
+            onrendered:function(canvas) {
+
+                var contentWidth = canvas.width;
+                var contentHeight = canvas.height;
+
+                //一页pdf显示html页面生成的canvas高度;
+                var pageHeight = contentWidth / 595.28 * 841.89;
+                //未生成pdf的html页面高度
+                var leftHeight = contentHeight;
+                //pdf页面偏移
+                var position = 0;
+                //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+                var imgWidth = 555.28;
+                var imgHeight = 555.28/contentWidth * contentHeight;
+
+                var pageData = canvas.toDataURL('image/jpeg', 1.0);
+
+                var pdf = new jsPDF('', 'pt', 'a4');
+                //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+                //当内容未超过pdf一页显示的范围，无需分页
+                if (leftHeight < pageHeight) {
+                    pdf.addImage(pageData, 'JPEG', 20, 0, imgWidth, imgHeight );
+                } else {
+                    while(leftHeight > 0) {
+                        pdf.addImage(pageData, 'JPEG', 20, position, imgWidth, imgHeight)
+                        leftHeight -= pageHeight;
+                        position -= 841.89;
+                        //避免添加空白页
+                        if(leftHeight > 0) {
+                            pdf.addPage();
+                        }
+                    }
+                }
+
+                pdf.save('优化方案.pdf');
+            }
+        })
+    }
+</script>
+</body>
+</html>

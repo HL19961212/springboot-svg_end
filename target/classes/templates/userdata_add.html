@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial=scale=1">
+    <title>AddList</title>
+    <link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/layer.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/css/layout.css}" type="text/css" rel="stylesheet">
+
+</head>
+
+<body>
+<div style="letter-spacing:6px; width: 100%; margin-top:20px;text-align: center;font-size: 20px !important;">新增数据</div>
+<form id="form" action="/userinsert" method="post">
+    <table class="table table-hover table-bordered" style=" margin: 160px 30px 20px 70px !important;" id="dynamicTable">
+        <tr>
+            <th>用户名</th>
+            <td><input type="text" name="username" class="form-control" id="id2" /></td>
+        </tr>
+        <tr>
+            <th>密码</th>
+            <td><input type="text" name="password" class="form-control" id="id3" /></td>
+        </tr>
+        <tr>
+            <th>登录时间</th>
+            <td><input type="text" name="loginTime" class="form-control" id="id4" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="reset" value="重置" class="btn btn-primary" id="reset" />
+                <input type="submit" name="" value="添加" class="btn btn-success" />
+                <input type="button" value="更新"  class="btn btn-info" id=""  onclick="update()" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<script type="text/javascript">
+
+    //add功能
+    //获取表单每个input的value值，然后创建节点td，添加到上面的表格当中
+    function addList(){
+        var oId1 = document.getElementById('id1').value;
+        var oId2 = document.getElementById('id2').value;
+        var oId3 = document.getElementById('id3').value;
+        var oId4 = document.getElementById('id4').value;
+        var oId5 = document.getElementById('id5').value;
+        var oId6 = document.getElementById('id6').value;
+        var oId7 = document.getElementById('id7').value;
+        var oId8 = document.getElementById('id8').value;
+        var oId9 = document.getElementById('id9').value;
+        var oId10 = document.getElementById('id10').value;
+        var oId10 = document.getElementById('id11').value;
+        var oId12 = document.getElementById('id12').value;
+        var oTr = document.createElement('tr');
+        var oTd1 = document.createElement('td');
+        var oInput = document.createElement('input');  //前面的选中
+        oTd1.appendChild(oInput);
+        oInput.setAttribute('type','checkbox');
+        oInput.setAttribute('name','item');
+        var oTd2 = document.createElement('td');
+        oTd2.innerHTML = oId1;
+        var oTd3 = document.createElement('td');
+        oTd3.innerHTML = oId2;
+        var oTd4 = document.createElement('td');
+        oTd4.innerHTML = oId3;
+        var oTd5 = document.createElement('td');
+        oTd5.innerHTML = oId4;
+        var oTd6 = document.createElement('td');
+        oTd6.innerHTML = oId5;
+        var oTd7 = document.createElement('td');
+        oTd7.innerHTML = oId6;
+        var oTd7 = document.createElement('td');
+        oTd8.innerHTML = oId7;
+        var oTd7 = document.createElement('td');
+        oTd9.innerHTML = oId8;
+        var oTd7 = document.createElement('td');
+        oTd10.innerHTML = oId9;
+        var oTd7 = document.createElement('td');
+        oTd11.innerHTML = oId10;
+        var oTd7 = document.createElement('td');
+        oTd12.innerHTML = oId11;
+        var oTd7 = document.createElement('td');
+        oTd13.innerHTML = oId12;
+        var oTd14 = document.createElement('td');  //操作一栏
+        var oInput2 = document.createElement('input');
+        var oInput3 = document.createElement('input');
+        oInput2.setAttribute('type','button');
+        oInput2.setAttribute('value','删除');
+        oInput2.setAttribute('onclick','del(this)');
+        oInput2.className = 'btn btn-danger';
+        oInput3.setAttribute('type','button');
+        oInput3.setAttribute('value','修改');
+        oInput3.setAttribute('onclick','modify(this)');
+        oInput3.className = 'btn btn-info';
+        oTd14.appendChild(oInput2);
+        oTd14.appendChild(oInput3);
+        oTr.appendChild(oTd1);
+        oTr.appendChild(oTd2);
+        oTr.appendChild(oTd3);
+        oTr.appendChild(oTd4);
+        oTr.appendChild(oTd5);
+        oTr.appendChild(oTd6);
+        oTr.appendChild(oTd7);
+        oTr.appendChild(oTd8);
+        oTr.appendChild(oTd9);
+        oTr.appendChild(oTd10);
+        oTr.appendChild(oTd11);
+        oTr.appendChild(oTd12);
+        oTr.appendChild(oTd13);
+        oTr.appendChild(oTd14);
+        var olistTable = document.getElementById('listTable');
+        olistTable.appendChild(oTr);
+    }
+
+    //del单点功能
+    //添加数据的时候，需要添加对应的点击事件onclick=del(this)，然后removeChild移除
+    function del(obj){
+        var oParentnode = obj.parentNode.parentNode;
+        var olistTable = document.getElementById('listTable');
+        olistTable.removeChild(oParentnode);
+    }
+
+    //全选
+    function checkAll(c){
+        var status = c.checked;
+        var oItems = document.getElementsByName('item');
+        for(var i=0;i<oItems.length;i++){
+            oItems[i].checked=status;
+        }
+    }
+    //delAll功能
+    //通过checkbox的checked属性当做开关，然后通过遍历删除checked=true对应的tr行。
+    function delAll(){
+        var olistTable = document.getElementById('listTable');
+        var items = document.getElementsByName("item");
+        for(var j=0;j<items.length;j++){
+            if(items[j].checked)//如果item被选中
+            {
+                var oParentnode = items[j].parentNode.parentNode;
+                olistTable.removeChild(oParentnode);
+                j--;
+            }
+        }
+    }
+    //modify功能
+    //点击“修改”后，将td的innerHTML值传到表单中的input当中，同时用一个参数记录下点击的行数rowIndex,"更新"按钮先找见需要修改的行数的Tr，然后将表单的值传给每个td
+    function modify(obj){
+        var oId1 = document.getElementById('id1').value;
+        var oId2 = document.getElementById('id2').value;
+        var oId3 = document.getElementById('id3').value;
+        var oId4 = document.getElementById('id4').value;
+        var oId5 = document.getElementById('id5').value;
+        var oId6 = document.getElementById('id6').value;
+        var oId7 = document.getElementById('id7').value;
+        var oId8 = document.getElementById('id8').value;
+        var oId9 = document.getElementById('id9').value;
+        var oId10 = document.getElementById('id10').value;
+        var oId10 = document.getElementById('id11').value;
+        var oId12 = document.getElementById('id12').value;
+        var oTr = obj.parentNode.parentNode;
+        var aTd = oTr.getElementsByTagName('td');
+        rowIndex = obj.parentNode.parentNode.rowIndex;
+        oId1.value = aTd[1].innerHTML;
+        oId2.value = aTd[2].innerHTML;
+        oId3.value = aTd[3].innerHTML;
+        oId4.value = aTd[4].innerHTML;
+        oId5.value = aTd[5].innerHTML;
+        oId6.value = aTd[6].innerHTML;
+        oId7.value = aTd[7].innerHTML;
+        oId8.value = aTd[8].innerHTML;
+        oId9.value = aTd[9].innerHTML;
+        oId10.value = aTd[10].innerHTML;
+        oId11.value = aTd[11].innerHTML;
+        oId12.value = aTd[12].innerHTML;
+        console.log(aTd[4].innerHTML);
+        alert(i);
+
+    }
+    //update功能
+    function update(){
+        var oId1 = document.getElementById('id1').value;
+        var oId2 = document.getElementById('id2').value;
+        var oId3 = document.getElementById('id3').value;
+        var oId4 = document.getElementById('id4').value;
+        var oId5 = document.getElementById('id5').value;
+        var oId6 = document.getElementById('id6').value;
+        var oId7 = document.getElementById('id7').value;
+        var oId8 = document.getElementById('id8').value;
+        var oId9 = document.getElementById('id9').value;
+        var oId10 = document.getElementById('id10').value;
+        var oId10 = document.getElementById('id11').value;
+        var oId12 = document.getElementById('id12').value;
+        //alert(rowIndex);
+        //var aTd = rowIndex.cells;
+        console.log(oMytable.rows[rowIndex].cells)
+        oMytable.rows[rowIndex].cells[1].innerHTML = oId1.value;
+        oMytable.rows[rowIndex].cells[2].innerHTML = oId2.value;
+        oMytable.rows[rowIndex].cells[3].innerHTML = oId3.value;
+        oMytable.rows[rowIndex].cells[4].innerHTML = oId4.value;
+        oMytable.rows[rowIndex].cells[5].innerHTML = oId5.value;
+        oMytable.rows[rowIndex].cells[6].innerHTML = oId6.value;
+        oMytable.rows[rowIndex].cells[7].innerHTML = oId7.value;
+        oMytable.rows[rowIndex].cells[8].innerHTML = oId8.value;
+        oMytable.rows[rowIndex].cells[9].innerHTML = oId9.value;
+        oMytable.rows[rowIndex].cells[10].innerHTML = oId10.value;
+        oMytable.rows[rowIndex].cells[11].innerHTML = oId11.value;
+        oMytable.rows[rowIndex].cells[12].innerHTML = oId12.value;
+    }
+</script>
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script>
+    var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+    //loading层
+    var index = layer.load(1, {
+        shade: [0.4,'#000'], //0.1透明度的白色背景
+        time: 1500
+    });
+</script>
+</body>
+</html>

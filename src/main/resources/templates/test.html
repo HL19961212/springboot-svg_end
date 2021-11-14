@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>前端petri网</title>
+</head>
+<div id="header">
+    <div id="rightheader">
+        <p>
+            2021-8-20
+            <br />
+            <a th:href="@{/index}">安全退出</a>
+        </p>
+    </div>
+    <div id="topheader">
+        <h1 id="title">
+            <a href="#">海洋云计算petri网---动态实时监控fvcom节点</a>
+        </h1>
+    </div>
+    <div id="navigation">
+    </div>
+</div>
+<div style="height: 800px;width: 900px;border: 3px solid crimson; position:absolute; left:10%">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="800" width="900">
+        <defs>
+            <marker id='markerArrow' markerWidth='13' markerHeight='13' refx='10' refy='6' orient='auto'>
+                <path d='M2,2 L2,11 L10,6 L2,2' style='fill:black'/>
+            </marker>
+        </defs>
+
+
+        <!-- -----------------------------第一列（自上到下）-------------------------------------------   -->
+        <!--circle-->
+        <g fill="white" stroke="black">
+            <circle id="genmap" cx="40" cy="40" r="20"/>
+            <circle id="tge" cx="40" cy="180" r="20"/>
+            <circle id="cell_area" cx="40" cy="320" r="20"/>
+            <circle id="shape_coef_gcn" cx="40" cy="460" r="20"/>
+            <circle id="edge_len" cx="40" cy="600" r="20"/>
+            <circle id="depth_grad" cx="40" cy="740" r="20"/>
+        </g>
+
+        <!--rect-->
+        <g fill="white" stroke="black">
+            <rect id="t1" x="30" y="110" width="20" height="20" rx="5"></rect>
+            <rect id="t2" x="30" y="250" width="20" height="20" rx="5"></rect>
+            <rect id="t3" x="30" y="390" width="20" height="20" rx="5"></rect>
+            <rect id="t4" x="30" y="530" width="20" height="20" rx="5"></rect>
+            <rect id="t5" x="30" y="670" width="20" height="20" rx="5"></rect>
+        </g>
+        <!--line-->
+        <g stroke="black">、
+            <line id="l1" x1="40" y1="60" x2="40" y2="110" marker-end='url(#markerArrow)'></line>
+            <line id="l2" x1="40" y1="130" x2="40" y2="160" marker-end='url(#markerArrow)'></line>
+            <line id="l3" x1="40" y1="200" x2="40" y2="250" marker-end='url(#markerArrow)'></line>
+            <line id="l4" x1="40" y1="270" x2="40" y2="300" marker-end='url(#markerArrow)'></line>
+            <line id="l5" x1="40" y1="340" x2="40" y2="390" marker-end='url(#markerArrow)'></line>
+            <line id="l6" x1="40" y1="410" x2="40" y2="440" marker-end='url(#markerArrow)'></line>
+            <line id="l7" x1="40" y1="480" x2="40" y2="530" marker-end='url(#markerArrow)'></line>
+            <line id="l8" x1="40" y1="550" x2="40" y2="580" marker-end='url(#markerArrow)'></line>
+            <line id="l9" x1="40" y1="620" x2="40" y2="670" marker-end='url(#markerArrow)'></line>
+            <line id="l10" x1="40" y1="690" x2="40" y2="720" marker-end='url(#markerArrow)'></line>
+
+        </g>
+        <!-------文本------------->
+        <g font-size="10" text-anchor="middle">
+            <text x="40" y="42">genmap</text>
+            <text x="40" y="182">tge</text>
+            <text x="40" y="322">cell_area</text>
+            <text x="40" y="462">shape_coef_gcn</text>
+            <text x="40" y="602">edge_len</text>
+            <text x="40" y="742">depth_grad</text>
+        </g>
+        <g font-size="10" text-anchor="middle">
+            <text x="40" y="122">t1</text>
+            <text x="40" y="262">t2</text>
+            <text x="40" y="402">t3</text>
+            <text x="40" y="542">t4</text>
+            <text x="40" y="682">t5</text>
+        </g>
+        <!-- -------------------------------底部转折的t6-----------------------------------------   -->
+
+        <g>
+            <rect id="t8" x="110" y="730" width="20" height="20" fill="white" stroke="black" rx="5"></rect>
+            <line x1="60" y1="740" x2="110" y2="740" stroke="black" marker-end='url(#markerArrow)'></line>
+            <text x="120" y="742" font-size="10" text-anchor="middle">t6</text>
+            <line x1="130" y1="740" x2="210" y2="740" stroke="black" marker-end='url(#markerArrow)'></line>
+        </g>
+
+        <!-- ----------------------------第二列（自下到上）--------------------------------------------   -->
+        <!--circle-->
+        <g fill="white" stroke="black">
+            <circle id="bcond_gcn" cx="200" cy="740" r="20"/>
+            <circle id="brough" cx="200" cy="600" r="20"/>
+            <circle id="rho_pmean" cx="200" cy="460" r="20"/>
+        </g>
+
+        <!--rect-->
+        <g fill="white" stroke="black">
+            <rect id="t7" x="190" y="670" width="20" height="20" rx="5"></rect>
+            <rect id="t8" x="190" y="530" width="20" height="20" rx="5"></rect>
+            <rect id="t9" x="280" y="530" width="20" height="20" rx="5"></rect>
+        </g>
+        <!--line-->
+        <g stroke="black">
+            <line id="l11" x1="200" y1="720" x2="200" y2="690" marker-end='url(#markerArrow)'></line>
+            <line id="l12" x1="200" y1="670" x2="200" y2="620" marker-end='url(#markerArrow)'></line>
+            <line id="l13" x1="200" y1="580" x2="200" y2="550" marker-end='url(#markerArrow)'></line>
+            <line id="l14" x1="200" y1="530" x2="200" y2="480" marker-end='url(#markerArrow)'></line>
+
+            <line id="l15" x1="220" y1="460" x2="280" y2="530" marker-end='url(#markerArrow)'></line>
+            <line id="l16" x1="300" y1="550" x2="340" y2="600" marker-end='url(#markerArrow)'></line>
+        </g>
+        <!-------文本------------->
+        <g font-size="10" text-anchor="middle">
+            <text x="200" y="462">rho_pmean</text>
+            <text x="200" y="602">brough</text>
+            <text x="200" y="742">bcond_gcn</text>
+        </g>
+        <g font-size="10" text-anchor="middle">
+            <text x="200" y="682">t7</text>
+            <text x="200" y="542">t8</text>
+            <text x="290" y="542">t9</text>
+        </g>
+
+
+        <!-- -------------------------------底部转折的t10-----------------------------------------   -->
+
+        <g>
+            <rect id="t15" x="270" y="592" width="20" height="20" fill="white" stroke="black" rx="5"></rect>
+            <line x1="220" y1="600" x2="270" y2="600" stroke="black" marker-end='url(#markerArrow)'></line>
+            <text x="280" y="605" font-size="10" text-anchor="middle">t10</text>
+            <line x1="290" y1="600" x2="340" y2="600" stroke="black" marker-end='url(#markerArrow)'></line>
+        </g>
+
+        <!-- ----------------------------第三列（自下到上）--------------------------------------------   -->
+        <!--circle-->
+        <g fill="white" stroke="black">
+            <circle id="baropg" cx="360" cy="600" r="20"/>
+            <circle id="adv_uv_edge_gcn" cx="360" cy="460" r="20"/>
+            <circle id="vdif_uv" cx="360" cy="320" r="20"/>
+
+            <circle id="adcor" cx="200" cy="320" r="20"/>
+
+            <circle id="vertvl_edge" cx="360" cy="180" r="20"/>
+            <circle id="viscofh" cx="360" cy="40" r="20"/>
+        </g>
+        <!--rect-->
+        <g fill="white" stroke="black">
+            <rect id="t14" x="270" y="310" width="20" height="20" rx="5"></rect>
+
+            <rect id="t16" x="350" y="110" width="20" height="20" rx="5"></rect>
+            <rect id="t15" x="350" y="250" width="20" height="20" rx="5"></rect>
+
+            <rect id="t13" x="350" y="390" width="20" height="20" rx="5"></rect>
+            <rect id="t12" x="350" y="530" width="20" height="20" rx="5"></rect>
+
+            <rect id="t11" x="280" y="670" width="20" height="20" rx="5"></rect>
+        </g>
+
+        <!--line-->
+        <g stroke="black">
+            <line id="l15" x1="360" y1="580" x2="360" y2="550" marker-end='url(#markerArrow)'></line>
+            <line id="l16" x1="360" y1="530" x2="360" y2="480" marker-end='url(#markerArrow)'></line>
+            <line id="l17" x1="360" y1="440" x2="360" y2="410" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="360" y1="390" x2="360" y2="340" marker-end='url(#markerArrow)'></line>
+
+            <line id="l19" x1="340" y1="320" x2="290" y2="320" marker-end='url(#markerArrow)'></line>
+            <line id="l20" x1="270" y1="320" x2="220" y2="320" marker-end='url(#markerArrow)'></line>
+            <line id="l19" x1="220" y1="320" x2="270" y2="320" marker-end='url(#markerArrow)'></line>
+            <line id="l20" x1="290" y1="320" x2="340" y2="320" marker-end='url(#markerArrow)'></line>
+
+            <line id="l18" x1="360" y1="300" x2="360" y2="270" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="360" y1="250" x2="360" y2="200" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="360" y1="160" x2="360" y2="130" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="360" y1="110" x2="360" y2="60" marker-end='url(#markerArrow)'></line>
+
+            <line id="l15" x1="360" y1="620" x2="300" y2="670" marker-end='url(#markerArrow)'></line>
+            <line id="l16" x1="280" y1="690" x2="220" y2="740" marker-end='url(#markerArrow)'></line>
+        </g>
+        <!-------文本------------->
+        <g font-size="10" text-anchor="middle">
+            <text x="200" y="322">adcor</text>
+
+            <text x="360" y="42">viscofh</text>
+            <text x="360" y="182">vertvl_edge</text>
+
+            <text x="360" y="322">vdif_uv</text>
+            <text x="360" y="462">adv_uv_edge_gcn</text>
+            <text x="360" y="602">baropg</text>
+
+        </g>
+        <g font-size="10" text-anchor="middle">
+            <text x="280" y="322">t14</text>
+
+            <text x="360" y="122">t16</text>
+            <text x="360" y="262">t15</text>
+
+            <text x="360" y="402">t13</text>
+            <text x="360" y="542">t12</text>
+
+            <text x="290" y="682">t11</text>
+        </g>
+        <!-- -------------------------------顶部转折的t17-----------------------------------------   -->
+
+        <g>
+            <rect id="t17" x="430" y="30" width="20" height="20" fill="white" stroke="black" rx="5"></rect>
+            <line x1="380" y1="40" x2="430" y2="40" stroke="black" marker-end='url(#markerArrow)'></line>
+            <text x="440" y="42" font-size="10" text-anchor="middle">t17</text>
+            <line x1="450" y1="40" x2="500" y2="40" stroke="black" marker-end='url(#markerArrow)'></line>
+        </g>
+
+
+        <!-- ----------------------------第四列（自上到下）--------------------------------------------   -->
+        <!--circle-->
+        <g fill="white" stroke="black">
+            <circle id="wreal" cx="520" cy="40" r="20"/>
+            <circle id="adv_q" cx="520" cy="180" r="20"/>
+            <circle id="fct_q2" cx="520" cy="320" r="20"/>
+            <circle id="fct_q2l" cx="520" cy="460" r="20"/>
+            <circle id="vdif_q" cx="520" cy="600" r="20"/>
+        </g>
+        <!--rect-->
+        <g fill="white" stroke="black">
+            <rect id="t18" x="510" y="110" width="20" height="20" rx="5"></rect>
+            <rect id="t19" x="510" y="250" width="20" height="20" rx="5"></rect>
+            <rect id="t20" x="510" y="390" width="20" height="20" rx="5"></rect>
+            <rect id="t21" x="510" y="530" width="20" height="20" rx="5"></rect>
+        </g>
+
+        <!-------文本------------->
+        <g font-size="10" text-anchor="middle">
+            <text x="520" y="42">wreal</text>
+            <text x="520" y="182">adv_q</text>
+            <text x="520" y="322">fct_q2</text>
+            <text x="520" y="462">fct_q2l</text>
+            <text x="520" y="602">vdif_q</text>
+
+        </g>
+        <g font-size="10" text-anchor="middle">
+            <text x="520" y="122">t18</text>
+            <text x="520" y="262">t19</text>
+            <text x="520" y="402">t20</text>
+            <text x="520" y="542">t21</text>
+        </g>
+        <!--line-->
+        <g stroke="black">
+            <line id="l15" x1="520" y1="60" x2="520" y2="110" marker-end='url(#markerArrow)'></line>
+            <line id="l16" x1="520" y1="130" x2="520" y2="160" marker-end='url(#markerArrow)'></line>
+            <line id="l17" x1="520" y1="200" x2="520" y2="250" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="520" y1="270" x2="520" y2="300" marker-end='url(#markerArrow)'></line>
+
+            <line id="l18" x1="520" y1="340" x2="520" y2="390" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="520" y1="410" x2="520" y2="440" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="520" y1="390" x2="520" y2="340" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="520" y1="440" x2="520" y2="410" marker-end='url(#markerArrow)'></line>
+
+            <line id="l18" x1="520" y1="480" x2="520" y2="530" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="520" y1="550" x2="520" y2="580" marker-end='url(#markerArrow)'></line>
+        </g>
+
+        <!-- -------------------------------底部转折的t22-----------------------------------------   -->
+
+        <g>
+            <rect id="t22" x="590" y="590" width="20" height="20" fill="white" stroke="black" rx="5"></rect>
+            <line x1="540" y1="600" x2="590" y2="600" stroke="black" marker-end='url(#markerArrow)'></line>
+            <text x="600" y="602" font-size="10" text-anchor="middle">t22</text>
+            <line x1="610" y1="600" x2="660" y2="600" stroke="black" marker-end='url(#markerArrow)'></line>
+        </g>
+        <!-- ----------------------------第五列（自下到上）--------------------------------------------   -->
+        <!--circle-->
+        <g fill="white" stroke="black">
+            <circle id="fct_s" cx="680" cy="40" r="20"/>
+            <circle id="adv_s" cx="680" cy="180" r="20"/>
+            <circle id="vdif_ts" cx="680" cy="320" r="20"/>
+            <circle id="fct_t" cx="680" cy="460" r="20"/>
+            <circle id="adv_t" cx="680" cy="600" r="20"/>
+        </g>
+        <!--rect-->
+        <g fill="white" stroke="black">
+            <rect id="t23" x="670" y="110" width="20" height="20" rx="5"></rect>
+            <rect id="t24" x="670" y="250" width="20" height="20" rx="5"></rect>
+            <rect id="t25" x="670" y="390" width="20" height="20" rx="5"></rect>
+            <rect id="t26" x="670" y="530" width="20" height="20" rx="5"></rect>
+
+            <rect id="t20" x="590" y="170" width="20" height="20" rx="5"></rect>
+        </g>
+        <!-------文本------------->
+        <g font-size="10" text-anchor="middle">
+            <text x="680" y="42">fct_s</text>
+            <text x="680" y="182">adv_s</text>
+            <text x="680" y="322">vdif_ts</text>
+            <text x="680" y="462">fct_t</text>
+            <text x="680" y="602">adv_t</text>
+
+        </g>
+        <g font-size="10" text-anchor="middle">
+            <text x="600" y="182">t27</text>
+
+            <text x="680" y="122">t26</text>
+            <text x="680" y="262">t25</text>
+            <text x="680" y="402">t24</text>
+            <text x="680" y="542">t23</text>
+        </g>
+
+        <!--line-->
+        <g stroke="black">
+            <line id="l15" x1="680" y1="580" x2="680" y2="550" marker-end='url(#markerArrow)'></line>
+            <line id="l16" x1="680" y1="530" x2="680" y2="480" marker-end='url(#markerArrow)'></line>
+            <line id="l17" x1="680" y1="440" x2="680" y2="410" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="680" y1="390" x2="680" y2="340" marker-end='url(#markerArrow)'></line>
+
+            <line id="l18" x1="680" y1="300" x2="680" y2="270" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="680" y1="250" x2="680" y2="200" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="680" y1="160" x2="680" y2="130" marker-end='url(#markerArrow)'></line>
+            <line id="l18" x1="680" y1="110" x2="680" y2="60" marker-end='url(#markerArrow)'></line>
+        </g>
+        <!--多边形回转-->
+        <g>
+            <polyline points="660,40 600,40 600,170 600,190 600,320 660,320" fill="none" stroke="black"
+                      marker-end='url(#markerArrow)'/>
+        </g>
+
+
+        <!-- -------------------------------中部转折的t27-----------------------------------------   -->
+
+        <g>
+            <rect id="t28" x="750" y="310" width="20" height="20" fill="white" stroke="black" rx="5"></rect>
+            <line x1="700" y1="320" x2="750" y2="320" stroke="black" marker-end='url(#markerArrow)'></line>
+            <text x="760" y="322" font-size="10" text-anchor="middle">t28</text>
+        </g>
+
+        <!-- ----------------------------第六列（自下到上）--------------------------------------------   -->
+        <!--circle-->
+        <g fill="white" stroke="black">
+            <circle id="conv_over" cx="840" cy="740" r="20"/>
+        </g>
+        <!-------文本------------->
+        <g font-size="10" text-anchor="middle">
+            <text x="840" y="740">conv_over</text>
+        </g>
+        <!--多边形构造循环体-->
+        <g>
+            <polyline points="770,320 840,320 840,720" fill="none" stroke="black" marker-end='url(#markerArrow)'/>
+        </g>
+
+
+        <!----------------------------最后水平线--------------------->
+        <!--rect-->
+        <g fill="white" stroke="black">
+            <rect id="t29" x="500" y="730" width="20" height="20" rx="5"></rect>
+        </g>
+        <!--line-->
+        <g stroke="black">、
+            <line id="l15" x1="820" y1="740" x2="520" y2="740" marker-end='url(#markerArrow)'></line>
+            <line id="l16" x1="500" y1="740" x2="220" y2="740" marker-end='url(#markerArrow)'></line>
+        </g>
+        <!-------文本------------->
+        <g font-size="10" text-anchor="middle">
+            <text x="510" y="742">t29</text>
+        </g>
+    </svg>
+</div>
+<div id="left">
+    <div id="leftlist">
+        <h4>
+            <a th:href="@{/fvcom1}">主界面</a>
+        </h4>
+        <br />
+        <h4>
+            <a th:href="@{/fvcom1}">主界面</a>
+        </h4>
+    </div>
+</div>
+<div id="right">
+    <div id="righttop" style="height: 400px;width: 450px;border: 3px skyblue; position:absolute">
+        <h4>
+            <a th:href="@{/fvcom1}">主界面</a>
+        </h4>
+        <br />
+        <h4>
+            <a th:href="@{/fvcom1}">主界面</a>
+        </h4>
+    </div>
+    <div id="rightdown" style="height: 400px;width: 450px;border: 3px slateblue; position:absolute; left:60%">
+
+    </div>
+</div>
+<script src="webjars/jquery/jquery.js"></script>
+<script type="text/javascript">
+    // 绑定每个节点，只要点击就会查询数据库，将所用的资源展示出来
+    const id_list = ["genmap", "tge", "cell_area", "shape_coef_gcn", "edge_len", "depth_grad",
+        "bcond_gcn", "brough", "rho_pmean", "baropg", "adv_uv_edge_gcn", "vdif_uv", "adcor",
+        "vertvl_edge", "viscofh", "wreal", "adv_q", "fct_q2", "fct_q2l", "vdif_q", "adv_t",
+        "fct_t", "vdif_ts", "adv_s", "fct_s", "conv_over"]
+    $(function (){
+        for(var i=0;i<id_list.length;i++){
+
+            let nodeid = id_list[i];
+            let node = document.getElementById(nodeid);
+            $(node).click(function (){
+                $.ajax({
+                    url: "/svg2",
+                    type: "post",
+                    data: "id=1",
+                    dataType: "text",
+                    success: function (data) {
+                        alert(data);
+                    }
+                })
+            })
+
+        }
+    })
+
+    let dom = null
+    var id = "";
+    const  fill_list = ["red","blue","green","pink"]
+    let times = 0
+    setInterval(function () {  //定时自动查看数据库数据
+        $.ajax({
+            url: "/svg1",
+            type: "post",
+            data: "id=1",
+            dataType: "text",
+            success: function (data) {
+                //alert(data);
+                id = data;
+            }
+        });
+    }, 900)
+    setInterval(function () {     //定时根据查找数据（也就是对应每个库所的标签），定位库所，实现高亮显示
+        if (dom) {
+            dom.setAttribute('fill', 'yellow')
+        }
+        //dom = document.getElementById(id_list[times%9])
+        dom = document.getElementById(id)
+        dom.setAttribute('fill', fill_list[times%4])
+        times++
+    }, 910)
+</script>
+<body>
+</body>
+</html>

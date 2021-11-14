@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table/style.css}"/>
+    <title>前端petri网</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #quyu {
+            border: 2px solid;
+            width: 1500px;
+            height: 1010px;
+            margin: 0 auto;
+        }
+
+        #quyu #toubu {
+            border: 2px solid #74A8F5;
+            width: 1500px;
+            height: 150px;
+            margin: 0px;
+            background: #5494F3
+        }
+
+        #quyu #toubu #toubuleft {
+            width: 400px;
+            height: 130px;
+            margin: 20px;
+            float: left;
+        }
+
+        #quyu #toubu #touburight {
+            width: 1020px;
+            height: 130px;
+            margin: 20px;
+            float: left;
+        }
+
+        #quyu #neirong {
+            border: 2px solid #74A8F5;
+            width: 1480px;
+            height: 820px;
+            margin: 10px
+        }
+
+        #quyu #neirong #left {
+            border: 2px solid #74A8F5;
+            width: 240px;
+            height: 800px;
+            margin: 5px;
+            float: left;
+        }
+
+        /*#neirong #left{border: 2px solid #74A8F5;width: 180px;height: 800px;margin: 2px;float:left}*/
+
+        #quyu #neirong #leftNeirong {
+            border: 2px solid #74A8F5;
+            width: 1200px;
+            height: 800px;
+            margin: 5px;
+            float: left;
+        }
+
+
+        <!--
+        --------------------------- 增加的内容 -------------------------------- >
+        #d1 {
+            width: 250px;
+            height: 400px;
+            background-color: #cccccc;
+            border: 2px solid black;
+            left: 30px;
+            top: 30px;
+            position: absolute;
+        }
+
+        #d1_head {
+            height: 30px;
+            background-color: blue;
+            color: white;
+            font-size: 20pt;
+        }
+
+        #d1_body {
+
+            font-size: 16pt;
+            background-color: #cccccc;
+        }
+
+
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td, th {
+            padding: 0;
+        }
+
+        .pure-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+        }
+
+        .pure-table caption {
+            color: #000;
+            font: italic 85%/1 arial, sans-serif;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        .pure-table td, .pure-table th {
+            border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: .5em 1em;
+        }
+
+        .pure-table thead {
+            background-color: #e0e0e0;
+            color: #000;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .pure-table td {
+            background-color: transparent;
+        }
+
+        .pure-table-odd td {
+            background-color: #f2f2f2;
+        }
+
+        <!--
+        结束
+
+        -->
+        ul li {
+            list-style: none;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="quyu">
+    <div id="toubu">
+        <div id="toubuleft">
+            <img th:src="@{/css/images/sea.gif}">
+        </div>
+        <div id="touburight">
+            <h1 id="title">
+                <font color="white">海洋云计算petri网---动态实时监控fvcom</font>
+                <br/>
+                <font color="white" size="5">Ocean cloud computing petri net-dynamic real-time monitoring fvcom</font>
+                <br/>
+                <br/>
+
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <a th:href="@{cluster_update1}"><font color="black" th:size="5">集群运行资源</font></a>&nbsp&nbsp
+                <a th:href="@{heatmap}"><font color="black" th:size="5">预报系统运行性能</font></a>&nbsp&nbsp
+                <a th:href="@{heatmap}"><font color="black" th:size="5">运行综合性能</font></a>&nbsp&nbsp
+
+
+            </h1>
+        </div>
+    </div>
+
+    <div id="neirong">
+        <div id="left">
+            <div id="d1_head"><b>图层目录</b></div>
+            <div id="d1_body">
+                <ul style="cursor:pointer;list-style: none;">
+                    <li>
+                        <form>
+                            <input type="checkbox" style="zoom: 140%;" id="check3" onclick="displayResult2()"><span
+                                onclick="displayResult2()"><b>动态Petri网</b></span>
+                        </form>
+                    </li>
+                    <ul style="cursor:pointer;list-style: none;display: none" id="u1">
+                        <li style="cursor:pointer;list-style: none;" id="data">
+                            <form>
+                                &nbsp&nbsp&nbsp&nbsp
+                                <input type="checkbox" style="zoom: 140%;" id="check1" onclick="displayResult()">资源占用
+                            </form>
+                        </li>
+                        <li style="cursor:pointer;list-style: none;" id="time">
+                            <form>
+                                &nbsp&nbsp&nbsp&nbsp
+                                <input type="checkbox" style="zoom: 140%;" id="check2" onclick="displayResult1()">模块计算时间
+                            </form>
+                        </li>
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+        <!-- ========================       petri ====================-->
+        <div id="leftNeirong">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <td align="center" class="biaoti" height="60">数据库管理平台</td>
+                </tr>
+                <tr>
+                    <td align="right" height="25">2021-10-21---2021-11-20</td>
+                </tr>
+            </table>
+            <p>当前 <span th:text="${pageInfo.pageNum}"></span> 页,总 <span th:text="${pageInfo.pages}"></span> 页,共 <span th:text="${pageInfo.total}"></span> 条记录</p>
+            <a th:href="@{/getAllPage}">首页</a>
+            <a th:href="@{/getAllPage(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a>
+            <a th:href="@{/getAllPage(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a>
+            <a th:href="@{/getAllPage(pageNum=${pageInfo.pages})}">尾页</a>
+
+            <table width="100%" border="2" cellspacing="1" cellpadding="4" bgcolor="#cccccc" class="tabtop13" align="center">
+                <tr>
+                    <th colspan="2" class="btbg font-center titfont" >索引键</th>
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">节点名称</th>
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">CPU编号</th>
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">ip地址</th>
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">job名</th>
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">mode名</th>
+                    <th colspan="2" class="btbg font-center titfont">状态</th>
+                    <th width="10%" class="btbg font-center titfont" rowspan="2">操作</th>
+                </tr>
+                <tr>
+                    <td width="8%" class="btbg font-center">编号</td>
+                    <td width="8%" class="btbg font-center">时间</td>
+                    <td width="8%" class="btbg font-center">值</td>
+                    <td width="8%" class="btbg font-center">结果</td>
+                </tr>
+
+                <tr th:each="cpu,iterStat : ${cpuList}" th:class="${iterStat.odd}? 'odd'">
+                    <td th:text="${cpu.id}"></td>
+                    <td th:text="${cpu.time}"></td>
+                    <td th:text="${cpu.name}"></td>
+                    <td th:text="${cpu.cpu}"></td>
+                    <td th:text="${cpu.instance}"></td>
+                    <td th:text="${cpu.job}"></td>
+                    <td th:text="${cpu.mode}"></td>
+                    <td th:text="${cpu.value}"></td>
+                    <td th:text="${cpu.chazhi}"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+                <tr th:each="cpu,iterStat : ${cpuList_1}" th:class="${iterStat.odd}? 'odd'">
+                    <td th:text="${cpu.id}"></td>
+                    <td th:text="${cpu.time}"></td>
+                    <td th:text="${cpu.name}"></td>
+                    <td th:text="${cpu.cpu}"></td>
+                    <td th:text="${cpu.instance}"></td>
+                    <td th:text="${cpu.job}"></td>
+                    <td th:text="${cpu.mode}"></td>
+                    <td th:text="${cpu.value}"></td>
+                    <td th:text="${cpu.chazhi}"></td>
+                    <td width="4%" class="btbg font-center">增加 删除 修改</td>
+                </tr>
+
+
+
+
+                </tr>
+            </table>
+
+
+        </div>
+
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="webjars/jquery/jquery.js"></script>
+<script type="text/javascript" th:inline="none">
+    // 绑定每个节点，只要点击就会查询数据库，将所用的资源展示出来
+    const id_list = ["genmap", "tge", "cell_area", "shape_coef_gcn", "edge_len", "depth_grad",
+        "bcond_gcn", "brough", "rho_pmean", "baropg", "adv_uv_edge_gcn", "vdif_uv", "adcor",
+        "vertvl_edge", "viscofh", "wreal", "adv_q", "fct_q2", "fct_q2l", "vdif_q", "adv_t",
+        "fct_t", "vdif_ts", "adv_s", "fct_s", "conv_over"]
+    $(function () {
+        for (var i = 0; i < id_list.length; i++) {
+
+            let nodeid = id_list[i];
+            let node = document.getElementById(nodeid);
+            $(node).click(function () {
+                $.ajax({
+                    url: "/svg2",
+                    type: "post",
+                    data: "id=1",
+                    dataType: "text",
+                    success: function (data) {
+                        alert(data);
+                    }
+                })
+            })
+
+        }
+    })
+
+    let dom = null
+    var id = "";
+    const fill_list = ["red", "blue", "yellow", "purple"]
+    let times = 0
+    setInterval(function () {  //定时自动查看数据库数据
+        $.ajax({
+            url: "/svg1",
+            type: "post",
+            data: "id=1",
+            dataType: "text",
+            success: function (data) {
+                //alert(data);
+                id = data;
+            }
+        });
+    }, 600)
+    setInterval(function () {     //定时根据查找数据（也就是对应每个库所的标签），定位库所，实现高亮显示
+        if (dom) {
+            dom.setAttribute('fill', 'green')
+        }
+        //dom = document.getElementById(id_list[times%9])
+        dom = document.getElementById(id)
+        dom.setAttribute("fill", fill_list[times % 4])
+        times++
+    }, 610)
+</script>
+
+</body>
+</html>

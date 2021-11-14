@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.webjars:webjars-locator-core:0.35">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../Environment/apache-maven-3.6.1/maven-repo/org/webjars/webjars-locator-core/0.35/webjars-locator-core-0.35.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../Environment/apache-maven-3.6.1/maven-repo/org/webjars/webjars-locator-core/0.35/webjars-locator-core-0.35-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../../Environment/apache-maven-3.6.1/maven-repo/org/webjars/webjars-locator-core/0.35/webjars-locator-core-0.35-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

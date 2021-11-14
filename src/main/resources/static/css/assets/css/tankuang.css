@@ -1,0 +1,158 @@
+@charset "utf-8";
+
+/*弹框S*/
+
+.candang {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	background-color: skyblue;
+	z-index: 888;
+}
+
+.gan_nan_box {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	background-color: #222222;
+	z-index: 888;
+}
+
+.img_div_box {
+	margin: 18px 18px 18px 9px;
+	max-height: 337px;
+}
+
+.img_div_box img {
+	width: 100%;
+}
+
+.ma_dc {
+	margin-top: 18px;
+	color: #fff;
+	font-size: 24px;
+}
+
+.tie_dc {
+	margin-top: 15px;
+	color: #fff;
+	font-size: 14px;
+}
+
+.yd_cl {
+	margin-top: 15px;
+	color: #fff;
+	font-size: 14px;
+	text-indent: 2em;
+	padding-bottom: 10px;
+	text-align: justify;
+	text-justify: inter-ideograph;
+}
+
+.kong_bj {
+	background-color: #222222;
+}
+
+.ran_dc_i {
+	position: absolute;
+	top: -45px;
+	right: 5px;
+	width: 45px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	color: #545454;
+	transition: pic 0.4s ease-in-out;
+	-webkit-transition: All 0.4s ease-in-out;
+	-moz-transition: All 0.4s ease-in-out;
+	-o-transition: All 0.4s ease-in-out;
+}
+
+.ran_dc_i:hover {
+	transform: rotate(280deg);
+	-webkit-transform: rotate(280deg);
+	-moz-transform: rotate(280deg);
+	-o-transform: rotate(280deg);
+	-ms-transform: rotate(280deg);
+	color: #feec98;
+}
+
+.ran_dc_i i {
+	font-size: 30px;
+}
+
+
+/*弹框E*/
+
+@media only screen and (min-width: 319px) and (max-width:734px) {
+	.gongl {
+		overflow-y: scroll;
+		max-height: 340px;
+	}
+	.kong_bj {
+		width: 98%;
+	}
+	.ma_dc {
+		font-size: 14px;
+	}
+	.gan_nan_box {
+		width: 320px;
+	}
+}
+
+@media only screen and (min-width: 741px) and (max-width:992px) {
+	.ma_dc {
+		margin-top: 100px;
+	}
+}
+
+.my_an_dh i {
+	transition: All 0.4s ease-in-out;
+	-webkit-transition: All 0.4s ease-in-out;
+	-moz-transition: All 0.4s ease-in-out;
+	-o-transition: All 0.4s ease-in-out;
+}
+
+.my_an_dh i:hover {
+	transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	-moz-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+}
+
+.gan_video_pl {
+	text-align: center;
+}
+
+.gan_video_pl{
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+@media only screen and (min-width:319px) and(max-width:785px) {
+	.gan_video_pl{
+		width: 100%;
+		min-width: 375px;
+		min-height: 250px;
+	}
+	.gan_video_pl iframe{
+		width: 100%;		
+	}
+}
+@media only screen and (min-width:319px) and(max-width:785px) {
+	.yingchang{
+		display: none;
+	}
+}
+
+@media only screen and (min-width:1000px){
+	.gan_video_pl iframe{
+	width: 55%;
+	max-height: 650px;
+	min-height: 400px;
+	}
+}

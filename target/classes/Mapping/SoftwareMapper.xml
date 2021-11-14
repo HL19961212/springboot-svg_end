@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.SoftwareDao">
+    <insert id="add" parameterType="com.kuang.entity.Software">
+        insert into newmysql values(#{createTime},#{content})
+    </insert>
+    <select id="findRecent" resultType="com.kuang.entity.Software">
+        select * from newmysql order by id desc limit 1
+    </select>
+    <select id="findAll" resultType="com.kuang.entity.Software">
+        select * from newmysql order by id desc
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from newmysql where id=#{id}
+    </delete>
+
+
+</mapper>

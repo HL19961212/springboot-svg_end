@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.dao.UserdataDao">
+    <insert id="add" parameterType="com.kuang.entity.Userdata">
+        insert into oceanuser values(#{username},#{password},#{loginTime})
+    </insert>
+    <select id="findAll" resultType="com.kuang.entity.Userdata">
+        select * from oceanuser order by id desc
+    </select>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from oceanuser where id=#{id}
+    </delete>
+
+
+</mapper>

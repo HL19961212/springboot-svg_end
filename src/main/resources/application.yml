@@ -1,0 +1,26 @@
+spring:
+  # 连接mysql数据库
+  datasource:
+    #url: jdbc:mysql://192.168.130.180/prometheus1_cpu?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/prometheus1_cpu?serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #关闭thymeleaf的缓存，使修改立即生效
+  thymeleaf:
+    cache: false
+
+mybatis:
+  mapper-locations: classpath:Mapping/*.xml
+
+#配置访问的路径，根路径的名称，这里是添加了kuang    server:servlet:context-path: /kuang
+#说明以后访问任何请求的时候，都必须是在localhost:8080/kuang/xxx  才可以生效   ，一般不加
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+

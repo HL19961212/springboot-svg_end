@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial=scale=1">
+    <title>List</title>
+    <link th:href="@{/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/layer.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/layout.css}" type="text/css" rel="stylesheet"/>
+    <style>
+        table{
+            width: 90% !important;
+            margin: 150px auto !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<form id="listForm" th:action="@{/deletetest}">
+    <table class="table table-hover table-bordered" id="mytable">
+        <thead>
+        <tr>
+            <th>选中</th>
+            <th>时间</th>
+            <th>节点CPU使用率</th>
+            <th>进程CPU使用率</th>
+            <th>CPU等待IO时间</th>
+            <th>系统CPU占比</th>
+            <th>节点内存使用率</th>
+            <th>进程内存使用率</th>
+            <th>swap使用率</th>
+            <th>磁盘IO时间</th>
+            <th>磁盘空间使用率</th>
+            <th>网络发送丢包</th>
+            <th>网络接收丢包</th>
+            <th>维护操作</th>
+            <!--			<th>操作</th>-->
+
+        </tr>
+
+        <!--
+                <tr>
+                <td><input type="checkbox" onclick="checkAll(this)"/></td>
+                <td colspan="7"><a href="javascript:;" class="btn btn-danger" role="button" onclick="delAll(this)">全部删除</a></td>
+                </tr>
+        -->
+        </thead>
+        <tbody id="listTable">
+        <tr th:each="recent100,iterStat : ${recent100}" th:class="${iterStat.odd}? 'odd'">
+            <td><input type="checkbox" name="item" th:value="${recent100.time}"/></td>
+            <td th:text="${recent100.time}"></td>
+            <td th:text="${recent100.cpu}"></td>
+            <td th:text="${recent100.process_cpu}"></td>
+            <td th:text="${recent100.cpu_io}"></td>
+            <td th:text="${recent100.sys_cpu}"></td>
+            <td th:text="${recent100.node_mem}"></td>
+            <td th:text="${recent100.process_mem}"></td>
+            <td th:text="${recent100.SWAP}"></td>
+            <td th:text="${recent100.diskio}"></td>
+            <td th:text="${recent100.filesys}"></td>
+            <td th:text="${recent100.receive}"></td>
+            <td th:text="${recent100.transmit}"></td>
+            <td>
+                <a th:href="'/table2-1/'+${recent100.time}"><input type="button" name="" value="删除" class="btn btn-success"/></a>
+                <input type="button" name="" value="修改" class="btn btn-info" onclick="modify(this)" />
+            </td>
+        </tr>
+        </tbody>
+        <tr>
+
+            <td colspan="13"><input type="submit" name="" value="删除"></a>
+
+                <a href="table2-2"><input type="button" name="" value="新增" class="btn btn-success" /></a>
+            </td>
+
+            <!--
+                    <td colspan="6"><input type="button" name="" value="新增" class="btn btn-success" onclick="addList()" /></td>
+                    <td colspan="6"><a href="javascript:;" class="btn btn-success" role="button" onclick="addList()">新增</a></td>
+            -->
+        </tr>
+
+    </table>
+</form>
+
+
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script>
+    var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+    //loading层
+    var index = layer.load(1, {
+        shade: [0.4,'#000'], //0.1透明度的白色背景
+        time: 1500
+    });
+</script>
+</body>
+</html>

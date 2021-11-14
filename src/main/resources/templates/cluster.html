@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>集群运行性能监测</title>
+    <!--    <link rel="stylesheet" th:href="@{/css/layui.css}" />-->
+    <style type="text/css">
+        *{ margin: 0;padding: 0;}
+        #quyu{border: 0px solid;width:100%;height:100%;top: 0px;}
+        /*#quyu #neirong{border: 1px solid #74A8F5;width: 100%;height: 100%;top: 0px}*/
+
+        #quyu #leftNeirong{border: 1px dashed #74A8F5;border-radius:20px;width: 800px;height: 930px;position:absolute;top:5px;left:10px;}
+
+        #quyu #rightNeirong{width: 420px;height: 930px;position:absolute;top:5px;left:840px;}
+
+        /*#quyu #down{border: 0px solid #74A8F5;width: 1000px;height: 200px;margin: 1px;position:absolute;top:600px;left:120px;}*/
+
+
+        <!-----------------------------    增加的内容  -------------------------------->
+
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 10px;
+            background-color: transparent;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td,th {
+            padding: 0;
+        }
+
+
+        <!--------->
+            #quyu #123{
+                background-color: red;
+                opacity: 0.3;
+            }
+    </style>
+    <!--    ---------------------------------------------------------------------->
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+
+        function displayResult() {
+            $("#figure1").toggle(function () {
+            });
+        }
+
+
+        function displayResult1() {
+            $("#figure2").toggle(function () {
+            });
+        }
+        function displayResult2() {
+            $("#figure3").toggle(function () {
+            });
+        }
+        function displayResult3() {
+            doAction(1);
+        }
+    </script>
+    <script>
+        function doAction(index){
+            var obj = document.getElementById('u' + index);
+            if(obj.style.display == 'none'){
+                obj.style.display = 'block';
+            }else{
+                obj.style.display = 'none';
+            }
+        }
+        function test(){
+            var obj = document.getElementById('l1');
+            alert(obj.innerHTML);
+        }
+    </script>
+
+</head>
+
+<body>
+
+<div id="quyu">
+    <div id="leftNeirong">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800" height="600">
+            <defs>
+                <marker id="markerArrow" markerWidth="13" markerHeight="13" refx="10" refy="6" orient="auto">
+                    <path d='M2,2 L2,11 L10,6 L2,2' style='fill:black' />
+                </marker>
+            </defs>
+            <defs>
+                <filter id="f1" x="0" y="0" width="200%" height="200%">
+                    <feOffset result="offOut" in="SourceGraphic" dx="5" dy="5" />
+                    <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+                </filter>
+            </defs>
+            <defs>
+                <filter id="f2" x="0" y="0" width="200%" height="200%">
+                    <feOffset result="offOut" in="SourceGraphic" dx="5" dy="5" />
+                    <feBlend in="SourceGraphic" in2="offOut" mode="normal" />
+                </filter>
+            </defs>
+
+            <!--slave1-->
+            <g fill="white" stroke="black" stroke-width="3" filter="url(#f2)" >
+                <circle id="slave101" cx="165" cy="70" r="11" />
+                <circle id="slave102" cx="215" cy="70" r="11" />
+                <circle id="slave103" cx="165" cy="115" r="11" />
+                <circle id="slave104" cx="215" cy="115" r="11" />
+            </g>
+            <text x="155" y="48" fill="blue" font-size="17">工作节点1</text>
+
+            <!--master-->
+            <g fill="white" stroke="black" stroke-width="3" filter="url(#f2)" >
+                <circle id="master01" cx="490" cy="275" r="11" />
+                <circle id="master02" cx="530" cy="275" r="11" />
+                <circle id="master03" cx="570" cy="275" r="11" />
+                <circle id="master04" cx="610" cy="275" r="11" />
+                <circle id="master05" cx="490" cy="315" r="11" />
+                <circle id="master06" cx="530" cy="315" r="11" />
+                <circle id="master07" cx="570" cy="315" r="11" />
+                <circle id="master08" cx="610" cy="315" r="11" />
+            </g>
+            <text x="510" y="245" fill="red" font-size="22">管理节点</text>
+
+            <!--slave2-->
+            <g fill="white" stroke="black" stroke-width="3" filter="url(#f2)" >
+                <circle id="slave201" cx="495" cy="70" r="11" />
+                <circle id="slave202" cx="545" cy="70" r="11" />
+                <circle id="slave203" cx="595" cy="70" r="11" />
+                <circle id="slave204" cx="645" cy="70" r="11" />
+                <circle id="slave205" cx="495" cy="115" r="11" />
+                <circle id="slave206" cx="545" cy="115" r="11" />
+                <circle id="slave207" cx="595" cy="115" r="11" />
+                <circle id="slave208" cx="645" cy="115" r="11" />
+            </g>
+            <text x="530" y="48" fill="blue" font-size="17" >工作节点2</text>
+
+            <!--slave3-->
+            <g fill="white" stroke="black" stroke-width="3" filter="url(#f2)" >
+                <circle id="slave301" cx="115" cy="255" r="11" />
+                <circle id="slave302" cx="165" cy="255" r="11" />
+                <circle id="slave303" cx="215" cy="255" r="11" />
+                <circle id="slave304" cx="265" cy="255" r="11" />
+                <circle id="slave305" cx="115" cy="295" r="11" />
+                <circle id="slave306" cx="165" cy="295" r="11" />
+                <circle id="slave307" cx="215" cy="295" r="11" />
+                <circle id="slave308" cx="265" cy="295" r="11" />
+            </g>
+            <text x="150" y="230" fill="blue" font-size="17" >工作节点3</text>
+
+            <!--slave4-->
+            <g fill="white" stroke="black" stroke-width="3" filter="url(#f2)" >
+                <circle id="slave401" cx="90" cy="450" r="11" />
+                <circle id="slave402" cx="130" cy="450" r="11" />
+                <circle id="slave403" cx="170" cy="450" r="11" />
+                <circle id="slave404" cx="210" cy="450" r="11" />
+                <circle id="slave405" cx="250" cy="450" r="11" />
+                <circle id="slave406" cx="290" cy="450" r="11" />
+
+                <circle id="slave408" cx="90" cy="490" r="11" />
+                <circle id="slave409" cx="130" cy="490" r="11" />
+                <circle id="slave410" cx="170" cy="490" r="11" />
+                <circle id="slave411" cx="210" cy="490" r="11" />
+                <circle id="slave412" cx="250" cy="490" r="11" />
+                <circle id="slave413" cx="290" cy="490" r="11" />
+
+                <circle id="slave415" cx="130" cy="530" r="11" />
+                <circle id="slave416" cx="170" cy="530" r="11" />
+                <circle id="slave407" cx="210" cy="530" r="11" />
+                <circle id="slave414" cx="250" cy="530" r="11" />
+            </g>
+            <text x="145" y="430" fill="blue" font-size="17">工作节点4</text>
+
+            <!--slave5-->
+            <g fill="white" stroke="black" stroke-width="3" filter="url(#f2)" >
+                <circle id="slave501" cx="505" cy="480" r="11" />
+                <circle id="slave502" cx="555" cy="480" r="11" />
+                <circle id="slave503" cx="605" cy="480" r="11" />
+                <circle id="slave504" cx="655" cy="480" r="11" />
+                <circle id="slave505" cx="505" cy="520" r="11" />
+                <circle id="slave506" cx="555" cy="520" r="11" />
+                <circle id="slave507" cx="605" cy="520" r="11" />
+                <circle id="slave508" cx="655" cy="520" r="11" />
+            </g>
+            <text x="540" y="460" fill="blue" font-size="17">工作节点5</text>
+            <!--rect-->
+            <g fill="white" stroke="black" fill-opacity="0.0">
+                <rect id="slave1" x="130" y="20" width="120" height="120" rx="5" stroke="green" stroke-width="3"
+                      filter="url(#f1)"></rect>
+                <rect id="slave4" x="60" y="400" width="260" height="155" rx="5" stroke="green" stroke-width="3"
+                      filter="url(#f1)"></rect>
+                <rect id="master" x="460" y="210" width="180" height="140" rx="5" stroke="green" stroke-width="3"
+                      filter="url(#f1)"></rect>
+                <rect id="slave2" x="460" y="20" width="220" height="120" rx="5" stroke="green" stroke-width="3"
+                      filter="url(#f1)"></rect>
+                <rect id="slave3" x="80" y="200" width="220" height="120" rx="5" stroke="green" stroke-width="3"
+                      filter="url(#f1)"></rect>
+                <rect id="slave5" x="470" y="430" width="220" height="120" rx="5" stroke="green" stroke-width="3"
+                      filter="url(#f1)"></rect>
+            </g>
+            <!--line-->
+            <g  stroke="black" stroke-width="3">
+                <!-- 线1 -->
+                <line x1="260" y1="120" x2="480" y2="205" />
+                <!-- 线4 -->
+                <line x1="480" y1="360" x2="330" y2="490" />
+                <!-- 线3 -->
+                <line x1="450" y1="280" x2="310" y2="260" />
+                <!-- 线2 -->
+                <line x1="550" y1="205" x2="560" y2="150" />
+                <!-- 线5 -->
+                <line x1="580" y1="360" x2="610" y2="425" />
+            </g>
+
+            <rect x="660" y="610" width="220" height="200" rx="5" fill="white"  stroke-width="3" fill-opacity="0.0"></rect>
+
+            <g fill="black">
+                <!--<text x="470" y="200" fill="red" font-size="26">图标：</text>-->
+                <circle cx="760" cy="260" r="13" fill="red" />
+                <rect x="750" y="300" width="25" height="25" rx="5" fill="green"></rect>
+                <text x="690" y="270"  font-size="18">cpu：</text>
+                <text x="690" y="320"  font-size="18">节点：</text>
+                <!--<text x="460" y="320"  font-size="16">发亮代表正在运行节点的CPU</text>-->
+            </g>
+        </svg>
+
+        <div style="position:absolute; top:610px; left:100px">
+            <iframe src="http://172.18.129.210:3001/d-solo/6ecjvrR7k/new-dashboard-copy?orgId=1&from=1635594755387&to=1635595055387&panelId=16" width="600" height="320"  frameborder="0" scrolling="no"></iframe>
+        </div>
+
+    </div>
+
+    <div id="rightNeirong">
+        <iframe src="http://localhost:8080/heatmap_test"  width="400px" height="900px" frameborder="0" scrolling="no" ></iframe>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="webjars/jquery/jquery.js"></script>
+<script type="text/javascript" th:inline="none">
+    const setInterval = function(){
+        //可以在这里调用ajax获取当前激活的节点
+        //剩下的操作便是为上个节点赋值白色，为当前节点赋值红色
+        const id_list = ["slave101","slave102","slave103","slave104",
+            "master01","master02","master03","master04","master05","master06","master07","master08",
+            "slave201","slave202","slave203","slave204","slave205","slave206","slave207","slave208",
+            "slave301","slave302","slave303","slave304","slave305","slave306","slave307","slave308",
+            "slave401","slave402","slave403","slave404","slave405","slave406","slave407","slave408","slave409","slave410","slave411","slave412"
+            ,"slave413","slave414","slave415","slave416",
+            "slave501","slave502","slave503","slave504","slave505","slave506","slave507","slave508"
+        ]
+        let dom = null
+        let times = 0
+        let count = 0;
+        window.setInterval(()=>{
+            if(dom){
+                dom.setAttribute('fill','white')
+            }
+            if(times % 6 === 0){
+                while (count<3){
+                    dom = document.getElementById(id_list[count%52])
+                    dom.setAttribute('fill','red')
+                    count++;
+                }
+            }
+            count++;
+            if(times % 6 === 1){
+                for(let i=0;i<8;i++){
+                    dom = document.getElementById(id_list[i%52])
+                    dom.setAttribute('fill','red')
+                    count++;
+                }
+            }
+            if(times % 6 === 2){
+                for(let i=0;i<8;i++){
+                    dom = document.getElementById(id_list[i%52])
+                    dom.setAttribute('fill','red')
+                    count++;
+                }
+            }
+            if(times % 6 === 3){
+                for(let i=0;i<8;i++){
+                    dom = document.getElementById(id_list[count%52])
+                    dom.setAttribute('fill','red')
+                    count++;
+                }
+            }
+            if(times % 6 === 4){
+                for(let i=0;i<12;i++){
+                    dom = document.getElementById(id_list[count%52])
+                    dom.setAttribute('fill','red')
+                    count++;
+                }
+            }
+            count++;
+            count++;
+            count++;
+            count++;
+            if(times % 6 === 5){
+                for(let i=0;i<5;i++){
+                    dom = document.getElementById(id_list[count%52])
+                    dom.setAttribute('fill','red')
+                    count++;
+                }
+            }
+            count++;
+            count++;
+            count++;
+            times++;
+        },2000)//定时器
+    }
+    setInterval()
+</script>
+
+</body>
+</html>
